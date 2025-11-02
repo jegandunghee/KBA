@@ -1,0 +1,1099 @@
+@charset "UTF-8";
+
+@use "./font";
+@use "./variable" as *;
+@use "./mixin" as mix;
+
+// 모바일 480px 데스크탑 1024px 로 지정 후 만들기
+
+header {
+  // header 전체 영역 - bg-img, 높이, 반응형
+  height: 68vh;
+  background-image: url(../img/header/banner01.jpg);
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center;
+  position: relative;
+  overflow: hidden;
+
+  @include mix.desk {
+    height: 33.5vh;
+    background-image: url(../img/pc/header/banner_pc_01.jpg);
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center;
+  }
+}
+
+header {
+  // 상단 고정 메뉴바
+
+  // 모바일 버전
+  .t_menu_mobile {
+    width: 100%;
+    @include mix.flex-layout($just: space-between, $align: center);
+    box-sizing: border-box;
+    padding: $base_padding;
+    color: $bg;
+    // fixed : height 값 없어짐. -> header의 자식요소에서 제외됨.
+    position: fixed;
+
+    // pc 사이즈에서 안보이도록 반응형 처리
+    @include mix.desk {
+      display: none;
+    }
+
+    h1 {
+      cursor: pointer;
+      font-size: 0.8rem;
+    }
+
+    .menu_icon {
+      i {
+        padding: 0.5rem;
+        cursor: pointer;
+      }
+    }
+
+    // t_menu 호버
+    &:hover {
+      background-color: $bg;
+
+      h1 {
+        color: $point;
+      }
+
+      .menu_icon {
+        color: $font;
+      }
+    }
+  }
+
+  // pc 버전 메뉴
+  .t_menu_pc {
+    display: none;
+
+    @include mix.desk {
+      display: block;
+      width: 100%;
+      padding: $base_padding;
+      color: $bg;
+      transition: 0.3s;
+
+      // 언어 설정
+      .lang {
+        @include mix.flex-layout($just: flex-end);
+        width: 95%;
+        font-size: 0.8rem;
+        padding: $base_padding;
+
+        a {
+          &:nth-of-type(2) {
+            color: $border;
+          }
+        }
+      }
+
+      // hr
+      hr {
+        display: none;
+      }
+
+      // pc 메뉴 전체 영역
+      .pc_menu {
+        @include mix.flex-layout($just: space-between);
+        width: 95%;
+        padding: 2rem 0;
+        margin: 0 auto;
+
+        h1 {
+          font-size: 1.5rem;
+        }
+
+        // pc 메뉴 a태그
+        .pc_menu_list {
+          @include mix.flex-layout($just: space-between, $gap: 3rem);
+          font-size: 0.9rem;
+          font-weight: bold;
+        }
+
+        // pc메뉴 아이콘
+        .pc_menu_icon {
+          font-size: 1.4rem;
+          @include mix.flex-layout();
+        }
+      }
+
+      // hover 처리
+      &:hover {
+        background-color: $bg;
+        color: $font;
+
+        // hr 호버
+        hr {
+          display: block;
+          border: none;
+          border-top: 1px solid $border;
+        }
+
+        // 메뉴 영역 호버
+        .pc_menu {
+          h1 {
+            color: $point;
+          }
+        }
+      }
+    }
+  }
+
+  // banner 하단 아이콘 & 바
+  .banner_bar {
+    width: 85%;
+    position: absolute;
+    bottom: 1.5rem;
+    left: 50%;
+    transform: translateX(-50%);
+    @include mix.flex-layout($just: center, $align: center);
+
+    .bar_icon {
+      @include mix.flex-layout();
+      color: $bg;
+      font-size: 0.8rem;
+      padding: 1rem;
+      cursor: pointer;
+
+      * {
+        &:hover {
+          color: $point;
+        }
+      }
+    }
+
+    div.bar_back {
+      flex: 1;
+      height: 2px;
+      background-color: rgba($color: #fff, $alpha: 0.5);
+
+      .bar_in {
+        width: 33.3333%;
+        height: 100%;
+        background-color: $point;
+        transition: 0.3s;
+      }
+    }
+
+    @include mix.desk {
+      width: 1024px; // 최대 너비 설정
+      left: 50%;
+      transform: translateX(-50%);
+      bottom: 3.5rem; // 하단 여백 조정
+
+      .bar_icon {
+        @include mix.flex-layout();
+        color: $bg;
+        font-size: 1.5rem;
+        padding: 1rem;
+        cursor: pointer;
+
+        * {
+          &:hover {
+            color: $point;
+          }
+        }
+      }
+
+      div.bar_back {
+        flex: none; // 너비를 고정
+        width: 85%; // 캡처 이미지 비율에 맞춰 적절히 축소
+
+        .bar_in {
+          width: 33.3333%;
+        }
+      }
+
+    }
+
+  }
+}
+
+// 드디어 메인영역 시작
+
+// main{
+
+// }
+
+// section_info 영역 시작
+
+.info {
+  width: 100%;
+  height: auto;
+  background-color: $bg;
+  padding: 1rem 0; // 모바일 상하 여백
+
+  // 바로가기 전체 영역
+  .info-container {
+    // 모든 화면에서 가운데 정렬
+    max-width: 1024px;
+    margin: 0 auto;
+    padding: 0 20px;
+  }
+}
+
+// 모바일- 제목 및 설명 영역
+.left {
+  text-align: center;
+  margin-bottom: 1rem; // 아이콘과의 간격
+
+  h1 {
+    color: $font;
+    font-size: 0.9rem;
+    font-weight: 700;
+    margin-bottom: 5px;
+  }
+
+  p {
+    font-size: 0.5rem;
+    color: #666;
+  }
+
+  // left 반응형 처리
+  @include mix.desk {
+    width: 210px;
+    text-align: left;
+    margin: 3rem 0;
+
+    h1 {
+      width: 160px;
+      font-size: 1.5rem;
+      line-height: 2rem;
+      padding: 0;
+    }
+
+    p {
+      font-size: 1rem;
+      padding-right: 4rem;
+    }
+  }
+}
+
+//  모바일-아이콘 목록 영역 - Grid 사용
+.right ul {
+  // 한 줄에 3개씩, 가운데 정렬
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  width: 40%;
+  gap: 20px;
+  margin: 0 auto;
+}
+
+// 모바일 - 개별 아이콘 항목 (li.go)
+.go {
+  min-width: 10px;
+
+  // 4번째 아이콘을 2번째 열에서 시작하기
+  &:nth-child(4) {
+    grid-column-start: 1;
+  }
+
+  a {
+    transition: all 0.3s;
+  }
+}
+
+// 아이콘 스타일
+.icon-box {
+  // 아이콘을 감싸는 박스
+  @include mix.flex-layout();
+  width: 2.2rem;
+  height: 2.2rem;
+  margin: 0 auto 10px;
+
+  // 아이콘 호버시 초록색 배경 전환
+  &:hover {
+    background-image: linear-gradient(to bottom,
+        rgba(17, 187, 108, 0.2),
+        rgba(28, 192, 115, 0.6));
+    border-radius: 4px;
+  }
+
+  img {
+    width: 100%;
+    height: 100%;
+  }
+}
+
+.go p {
+  text-align: center;
+  color: $font;
+  font-size: 6px;
+  font-weight: 500;
+}
+
+a:hover p {
+  font-weight: bold;
+  color: #000;
+}
+
+// 반응형
+@include mix.desk {
+  .info-container {
+    height: 18vh;
+    padding: 3rem $base_padding;
+    @include mix.flex_layout($just: space-between);
+  }
+
+
+  .right {
+    width: calc(100% - 210px); // 남은 공간 차지
+
+    ul {
+      width: 100%;
+      @include mix.flex_layout($just: space-around, $gap: 1rem);
+
+      .go {
+
+        a {
+          padding: 1.5rem 10px; // 데스크탑에서 패딩 조정
+
+          .icon-box {
+            width: 3.5rem;
+            height: 3.5rem;
+
+            img {
+              transform: scale(1.8); // 스케일링 제거, 아이콘 박스 크기에 맞춤
+            }
+          }
+
+          p {
+            padding: 1rem 0;
+            font-size: 0.9rem;
+            color: #666;
+          }
+        }
+      }
+    }
+  }
+}
+
+// section_notice 영역 시작
+
+.notice {
+  // 전체영역 및 bg-img 설정
+  height: 73vh;
+  background-image: url(../img/main/section2/section2-bg.jpg);
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+
+  // 반응형
+  @include mix.desk {
+    height: 785px;
+    padding: 3rem 1rem;
+  }
+
+  // 제목
+  h1 {
+    color: $font;
+    text-align: center;
+    font-size: 0.8rem;
+    padding: 1.2rem 0;
+
+    // 반응형
+    @include mix.desk {
+      font-size: 1.9rem; // 제목 크기 확대
+      padding: 0 0 2rem 0;
+    }
+  }
+
+  // 카드 전체 영역
+  .cards {
+    width: 90vw;
+    margin: 0 auto;
+
+    // 반응형
+    @include mix.desk {
+      max-width: 1024px;
+      display: grid;
+      // 3열 레이아웃
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1rem;
+      width: 100%;
+    }
+  }
+
+  // 첫번째 카드
+  .first_card {
+    width: 70%;
+    height: 220px;
+    margin: 0 auto 0.8rem;
+    border-radius: $card_radius;
+    box-shadow: $shadow;
+    background-image: url(../img/main/section2/mobile-first-card1.jpg);
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    position: relative;
+
+    &:hover {
+      background-size: 150%;
+    }
+
+    @include mix.desk {
+      width: 100%;
+      height: 600px;
+      margin: 0;
+
+      background-image: url(../img/main/section2/pc-first-card1.jpg);
+
+    }
+  }
+
+  // 첫번째 카드 꺽쇠 아이콘
+  .first_icon {
+    position: absolute;
+    bottom: 10px;
+    right: 10px;
+    color: rgb(101, 101, 190);
+
+    i {
+      &:hover {
+        color: $point;
+      }
+    }
+  }
+
+  .main-right-section {
+    width: 100%;
+    @include mix.flex_layout($dire: column, $gap: 0.8rem, $just: flex-start, $align: flex-start);
+
+    // 반응형
+    @include mix.desk {
+      // pc : 가로 정렬
+      width: 100%;
+      margin: 0 auto;
+      @include mix.flex_layout( $align: stretch);
+      flex: 1;
+    }
+  }
+
+
+  /* ---------------------------------------------------- */
+  /* 두번째 카드 영역: .seconde_cards (보도자료/성명서) */
+  /* ---------------------------------------------------- */
+  .seconde_cards {
+    width: 100%;
+    margin-top: 0.8rem;
+    @include mix.flex_layout($gap: 0.5rem); // 모바일: 가로 2열
+
+    @include mix.desk {
+      // 🚨 수정: 부모(.main-right-section)의 flex-item으로 동작. 너비 지정.
+      width: auto;
+      flex: 1; // 공간을 채우도록 설정
+      max-width: 400px; // 원본 이미지와 비슷하게 너비를 제한할 경우 사용 (선택 사항)
+      @include mix.flex_layout($dire: column, $gap: 1rem); // 데스크톱: 세로로 쌓기
+      margin-top: 0;
+    }
+
+    >div {
+      border-radius: $card_radius;
+      box-shadow: $shadow;
+      overflow: hidden;
+    }
+
+    // hover
+    &:hover {
+      div.two_txt>p {
+        &:last-child {
+          color: $point;
+        }
+      }
+
+      div.two_card {
+        background-size: 120%;
+      }
+    }
+
+    // 카드
+    .two {
+      flex: 1; // 모바일: 가로 공간을 균등하게 나눔. 데스크톱: 세로 높이를 균등하게 나눔.
+
+      &:nth-of-type(1)>.two_card {
+        background-image: url(../img/main/section2/mobile-two-card1.png);
+      }
+
+      &:nth-of-type(2)>.two_card {
+        background-image: url(../img/main/section2/mobile-two-card2.png);
+      }
+
+      // 반응형 
+      @include mix.desk {
+
+        .two_card {
+          width: 100%;
+          height: 20vh;
+          background-size: cover;
+          background-position: center;
+          background-repeat: no-repeat;
+        }
+
+        &:nth-of-type(1)>.two_card {
+          background-image: url(../img/main/section2/pc-two-card1.png);
+        }
+
+        &:nth-of-type(2)>.two_card {
+          background-image: url(../img/main/section2/pc-two-card2.png);
+        }
+
+        .two_txt {
+          padding: 1rem;
+
+          p:first-child {
+            font-size: 1rem;
+          }
+
+          p:last-child {
+            font-size: 0.8rem;
+          }
+        }
+      }
+
+
+      .two_card {
+        width: 250px; // 모바일 기본 너비
+        height: 16.5vh;
+        background-size: cover;
+        background-position: center;
+        background-repeat: no-repeat;
+      }
+
+      // 텍스트
+      .two_txt {
+        background-color: $bg;
+        color: $font;
+        padding: 0.8rem;
+
+        p {
+          &:first-child {
+            font-size: 0.7rem;
+            font-weight: bolder;
+          }
+
+          &:last-child {
+            font-size: 0.5rem;
+            color: #666;
+          }
+        }
+      }
+    }
+  }
+
+  /* ---------------------------------------------------- */
+  /* 세번째 카드 묶음: .three_card (공지사항/방송가 뉴스) */
+  /* ---------------------------------------------------- */
+  .three_card {
+    width: 100%;
+    @include mix.flex_layout($gap: 0.5rem); // 모바일: 가로 2열
+
+    // 반응형
+    @include mix.desk {
+      // 🚨 수정: 부모(.main-right-section)의 flex-item으로 동작
+      flex: 1; // 남은 공간을 채우도록 설정
+      @include mix.flex_layout($dire: column, $gap: 1rem, $just: flex-start, $align: stretch); // 데스크톱: 세로로 쌓기
+      margin: 0;
+    }
+
+    .three {
+      flex: 1; // 모바일: 가로 공간을 균등하게 나눔. 데스크톱: 세로 높이를 균등하게 나눔.
+      width: 250px;
+      height: 12vh;
+      margin: 0.3rem auto;
+      box-shadow: $shadow;
+      border-radius: $card_radius;
+      background-size: cover;
+      background-position: center;
+      background-repeat: no-repeat;
+      cursor: pointer;
+
+      &:first-child {
+        background-image: url(../img/main/section2/mobile-three-card1.png);
+      }
+
+      &:last-child {
+        background-image: url(../img/main/section2/mobile-three-card2.png);
+      }
+
+      p {
+        padding: 1rem 0.5rem;
+        font-weight: bold;
+        font-size: 0.7rem;
+        color: $font;
+      }
+
+      // 반응형
+      @include mix.desk {
+        height: 120px;
+        margin: 0;
+
+        p {
+          font-size: 1rem;
+          padding: 1.5rem;
+        }
+      }
+    }
+  }
+}
+
+// section_gamsung 영역시작
+.gamsung {
+  background-image: url(../img/main/section3/section3.jpg);
+  background-size: contain;
+  height: 7.8vh;
+  color: $bg;
+  text-align: center;
+  padding: 1.3rem 0;
+  box-sizing: border-box;
+
+  @include mix.desk {
+    height: 15vh;
+    background-size: cover;
+    @include mix.flex_layout();
+  }
+
+  h1 {
+    font-size: 0.7rem;
+
+    @include mix.desk {
+      font-size: 1.8rem;
+    }
+
+    br {
+      @include mix.desk {
+        display: none;
+      }
+    }
+  }
+}
+
+// section_introduce 영역 시작
+section.introduce {
+  margin: 1rem 0;
+
+  h1 {
+    font-size: 0.7rem;
+    text-align: center;
+    margin-bottom: 0.5rem;
+    padding: 0.5rem 0;
+
+    // 반응형
+    @include mix.desk {
+      font-size: 1.5rem;
+      padding: 2rem 0 1rem;
+    }
+  }
+
+  ul {
+    @include mix.flex_layout($dire: column, $just: space-around, $gap: 4px);
+
+    @include mix.desk {
+      @include mix.flex_layout($dire: row, $just: center, $gap: 0.5rem); // 5열 가로 배치
+      max-width: 1024px;
+      margin: 0 auto;
+      padding: 0 1rem 3rem;
+    }
+
+
+    li.intro_card {
+      width: 65%;
+      height: 15vh;
+      margin-top: 4px;
+      border-radius: 0.8rem;
+      background-size: cover;
+      background-position: center;
+      background-repeat: no-repeat;
+      position: relative;
+
+      // section4 bg-img
+      &:nth-child(1) {
+        background-image: url(../img/main/section4/section4-1.png);
+      }
+
+      &:nth-child(2) {
+        background-image: url(../img/main/section4/section4-2.png);
+      }
+
+      &:nth-child(3) {
+        background-image: url(../img/main/section4/section4-3.png);
+      }
+
+      &:nth-child(4) {
+        background-image: url(../img/main/section4/section4-4.png);
+      }
+
+      &:nth-child(5) {
+        background-image: url(../img/main/section4/section4-5.png);
+      }
+
+      // hover
+      &:hover {
+        background-size: 120%;
+      }
+
+      // 텍스트 아래정렬
+      p {
+        position: absolute;
+        bottom: 10px;
+        left: 10px;
+        color: $bg;
+        font-size: 0.6rem;
+        font-weight: bolder;
+      }
+
+      @include mix.desk {
+        width: 180px;
+        height: 250px;
+        margin-top: 0;
+        flex-shrink: 0; // 유동적인 크기 방지
+
+        p {
+          font-size: 1rem;
+          bottom: 20px;
+          left: 20px;
+        }
+      }
+    }
+  }
+}
+
+// section5 영역 시작
+
+// ---자세히 보러가기 부분 수정 필요---
+.business {
+  padding: $base_padding;
+  height: 55vh;
+
+  @include mix.desk {
+    padding: 3rem 1rem 5rem;
+    max-width: 1024px;
+    margin: 0 auto;
+    height: auto;
+  }
+
+  h1 {
+    text-align: center;
+    font-size: 0.8rem;
+    padding: 0.5rem;
+
+    @include mix.desk {
+      font-size: 1.5rem;
+      padding-bottom: 2rem;
+    }
+  }
+
+  .content {
+    .tap_menu {
+      flex-wrap: wrap;
+      @include mix.flex_layout($gap: 0);
+
+      li {
+        width: 49%;
+        height: 35%;
+        border: 0.5px solid $border;
+
+        &:nth-of-type(1) {
+          border-radius: 6px 0 0 0;
+        }
+
+        &:nth-of-type(2) {
+          border-radius: 0 6px 0 0;
+        }
+
+        h3 {
+          font-size: 0.5rem;
+          padding: 0.4rem 0;
+          background-color: #eee;
+          text-align: center;
+        }
+      }
+
+      // 반응형
+      @include mix.desk {
+        @include mix.flex_layout($just: flex-start, $gap: 0);
+        width: 100%;
+
+        li {
+          width: auto;
+          height: auto;
+          border: none;
+          border-radius: 0;
+
+          &:nth-of-type(1) h3 {
+            border-radius: 6px 0 0 0;
+          }
+
+          &:nth-of-type(4) h3 {
+            border-radius: 0 6px 0 0;
+          }
+
+          h3 {
+            font-size: 1rem;
+            padding: 0.8rem 2rem;
+            background-color: #eee;
+            text-align: center;
+            border: 1px solid $border;
+            border-bottom: none;
+          }
+
+          // 현재 선택된 탭 스타일 (첫 번째 탭 가정)
+          &:nth-of-type(1) h3 {
+            background-color: $font;
+            color: $bg;
+          }
+        }
+      }
+    }
+
+    // 모바일
+    .tap_content {
+      position: relative; // 자식 li의 absolute 기준점
+      width: 100%;
+      height: 30%;
+
+      li {
+        position: absolute; // 겹치기
+        width: 100%;
+        top: 0;
+        left: 0;
+        background-color: $bg;
+
+        // 첫 번째 탭만 보이도록
+        &:not(:first-child) {
+          opacity: 0;
+          z-index: 1;
+        }
+
+        &:first-child {
+          opacity: 1;
+          z-index: 2;
+        }
+
+        // 배경 이미지 설정 (모바일과 동일)
+        &:nth-of-type(1)>.left {
+          background-image: url(../img/main/section5/section5-1.png);
+        }
+
+        &:nth-of-type(2)>.left {
+          background-image: url(../img/main/section5/section5-2.png);
+        }
+
+        &:nth-of-type(3)>.left {
+          background-image: url(../img/main/section5/section5-3.png);
+        }
+
+        &:nth-of-type(4)>.left {
+          background-image: url(../img/main/section5/section5-4.png);
+        }
+
+        .left {
+          width: 80%;
+          height: 24vh;
+          margin: 1rem auto;
+          border-radius: 0.5rem;
+          background-size: cover;
+          background-position: center;
+          background-repeat: no-repeat;
+        }
+
+        .right {
+          width: 60%;
+          margin: 0 auto;
+          text-align: center;
+          @include mix.flex_layout($dire: column, $gap: 1rem);
+
+          h2 {
+            font-size: 0.8rem;
+            font-weight: bold;
+          }
+
+          p {
+            width: 175px;
+            font-size: 0.5rem;
+            color: #666;
+          }
+
+          a {
+            padding: $base_padding;
+            border: 1px solid $border;
+            border-radius: 30px;
+            font-size: 0.5rem;
+            color: #666;
+          }
+        }
+      }
+
+      // --- pc 버전 반응형---
+      @include mix.desk {
+        height: 350px;
+        border: 1px solid $border;
+        border-radius: 0 6px 6px 6px;
+        border-top: 1px solid $font; // 탭 메뉴와 연결되도록 처리
+
+        li {
+          // 겹치는 설정 해제
+          position: static;
+          @include mix.flex_layout($just: space-around, $align: center, $gap: 2rem); // 좌우 분할 레이아웃
+          padding: 2rem;
+          height: 100%;
+
+          // 데스크탑에서는 모든 탭 콘텐츠가 각각 보일 수 있도록 설정
+          opacity: 1;
+          z-index: auto;
+
+          .left {
+            width: 45%;
+            height: 100%;
+            margin: 0;
+          }
+
+          .right {
+            width: 40%;
+            text-align: left;
+            align-items: flex-start;
+
+            h2 {
+              font-size: 1.5rem;
+              margin-bottom: 1rem;
+            }
+
+            p {
+              width: 100%;
+              font-size: 1rem;
+              line-height: 1.6;
+            }
+
+            a {
+              font-size: 1rem;
+              padding: 0.8rem 1.5rem;
+              margin-top: 1rem;
+            }
+          }
+        }
+      }
+    }
+  }
+}
+
+
+// footer 영역 시작 
+
+footer {
+  // 배경색 및 기본 설정
+  background-color: $bg;
+  border-top: 1px solid $border;
+  position: relative;
+
+  // 로고 슬라이드 영역
+  .logo_slide {
+    overflow: hidden; // 화면 밖 로고 숨김
+    padding: 1rem 0;
+    border-bottom: 1px solid $border;
+    width: 100%;
+
+    .logo_track {
+      // 로고들을 한 줄에 나열
+      @include mix.flex_layout($just: flex-start, $gap: 1.5rem);
+      width: fit-content;
+      padding: 0 1rem;
+
+      @include mix.desk {
+        padding: 0 2rem;
+      }
+
+      img {
+        // 로고 크기
+        height: 25px;
+        object-fit: contain;
+        opacity: 0.8;
+        flex-shrink: 0;
+
+        @include mix.desk {
+          height: 35px;
+        }
+      }
+    }
+  }
+
+  // 푸터 내용 영역
+  .footer_content {
+    max-width: 1024px;
+    margin: 0 auto;
+    padding: 2rem 1.5rem 2.5rem;
+
+    @include mix.desk {
+      @include mix.flex_layout($just: space-between, $align: center, $gap: 3rem); // 가로 배치
+      padding: 3rem 1.5rem;
+    }
+
+    .kba_info {
+      @include mix.flex_layout($dire: column, $just: flex-start, $align: flex-start, $gap: 0.8rem);
+
+      @include mix.desk {
+        width: 100%;
+        @include mix.flex_layout($dire: row, $just: flex-start, $align: flex-start, $gap: 3rem);
+        flex-wrap: wrap; // 좁아지면 줄바꿈
+      }
+
+      // 한국방송협회 로고
+      .kba_logo {
+        color: $point;
+        font-size: 0.8rem;
+
+        @include mix.desk {
+          font-size: 1.2rem;
+        }
+      }
+
+      // 주소 및 연락처 정보
+      .contact_info {
+        font-style: normal;
+
+        .address_line {
+          font-size: 0.75rem;
+          color: $font;
+          margin-bottom: 0;
+        }
+
+        .tel_fax_email {
+          font-size: 0.75rem;
+          color: #666;
+          line-height: 1.5;
+
+          // 원본 이미지처럼 대표전화/팩스, 이메일이 바로 이어지도록 간격 조정
+          &.tel_fax_email:nth-of-type(2) {
+            margin-top: 0;
+          }
+        }
+
+        @include mix.desk {
+          @include mix.flex_layout($dire: column, $just: flex-start, $align: flex-start, $gap: 0.5rem);
+        }
+      }
+
+      // 저작권 문구
+      .copyright {
+        // 원본 이미지의 간격에 맞춰 상단 여백 제거
+        margin-top: 0;
+        font-size: 0.7rem; // 폰트 크기 원본에 맞춰 조정
+        color: #888;
+        line-height: 1.5;
+
+        @include mix.desk {
+          // 저작권 문구를 오른쪽 하단으로 배치하기 위해 레이아웃 변경
+          margin-top: 0;
+          align-self: flex-end;
+          font-size: 0.9rem;
+        }
+      }
+    }
+  }
+
+}

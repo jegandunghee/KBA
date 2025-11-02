@@ -1,0 +1,18 @@
+// display:flex 설정 mixin
+@mixin flex_layout($dire:row, $just:center, $align:center, $gap:1rem){
+  display: flex;
+  flex-direction: $dire;
+  justify-content: $just;
+  align-items: $align; 
+  gap: $gap;
+} 
+
+
+
+
+// 반응형 - desktop 사이즈 정의 
+@mixin desk{
+  @media all and (min-width:1024px) {
+    @content;
+  }
+}
