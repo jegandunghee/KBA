@@ -325,29 +325,26 @@ a:hover p {
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
-  /* ---------------------------------------------------- */
   /* 두번째 카드 영역: .seconde_cards (보도자료/성명서) */
-  /* ---------------------------------------------------- */
-  /* ---------------------------------------------------- */
   /* 세번째 카드 묶음: .three_card (공지사항/방송가 뉴스) */
-  /* ---------------------------------------------------- */
 }
 @media all and (min-width: 1024px) {
   .notice {
-    height: 785px;
-    padding: 3rem 1rem;
+    height: 770px;
+    padding: 5rem 1rem 2.5rem;
   }
 }
 .notice h1 {
   color: #222;
   text-align: center;
   font-size: 0.8rem;
-  padding: 1.2rem 0;
+  padding: 2rem 0;
 }
 @media all and (min-width: 1024px) {
   .notice h1 {
     font-size: 1.9rem;
     padding: 0 0 2rem 0;
+    margin-bottom: 1rem;
   }
 }
 .notice .cards {
@@ -357,14 +354,17 @@ a:hover p {
 @media all and (min-width: 1024px) {
   .notice .cards {
     max-width: 1024px;
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: stretch;
     gap: 1rem;
     width: 100%;
+    height: 600px;
   }
 }
 .notice .first_card {
-  width: 70%;
+  width: 100%;
   height: 220px;
   margin: 0 auto 0.8rem;
   border-radius: 4px;
@@ -376,13 +376,14 @@ a:hover p {
   position: relative;
 }
 .notice .first_card:hover {
-  background-size: 150%;
+  background-size: 140%;
 }
 @media all and (min-width: 1024px) {
   .notice .first_card {
-    width: 100%;
-    height: 600px;
+    width: 306px;
+    height: 100%;
     margin: 0;
+    border-radius: 1rem;
     background-image: url(../img/main/section2/pc-first-card1.jpg);
   }
 }
@@ -399,16 +400,16 @@ a:hover p {
   width: 100%;
   display: flex;
   flex-direction: column;
-  justify-content: flex-start;
-  align-items: flex-start;
+  justify-content: center;
+  align-items: stretch;
   gap: 0.8rem;
 }
 @media all and (min-width: 1024px) {
   .notice .main-right-section {
-    width: 100%;
-    margin: 0 auto;
+    width: auto;
+    height: 100%;
     display: flex;
-    flex-direction: row;
+    flex-direction: column;
     justify-content: center;
     align-items: stretch;
     gap: 1rem;
@@ -426,13 +427,13 @@ a:hover p {
 }
 @media all and (min-width: 1024px) {
   .notice .seconde_cards {
+    flex: 3 1 0;
+    height: 0;
     width: auto;
-    flex: 1;
-    max-width: 400px;
     display: flex;
-    flex-direction: column;
+    flex-direction: row;
     justify-content: center;
-    align-items: center;
+    align-items: stretch;
     gap: 1rem;
     margin-top: 0;
   }
@@ -441,6 +442,13 @@ a:hover p {
   border-radius: 4px;
   box-shadow: 2px 2px 6px rgba(114, 114, 114, 0.3);
   overflow: hidden;
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 0;
+  min-width: 0;
 }
 .notice .seconde_cards:hover div.two_txt > p:last-child {
   color: rgb(0, 141, 75);
@@ -449,7 +457,7 @@ a:hover p {
   background-size: 120%;
 }
 .notice .seconde_cards .two {
-  flex: 1;
+  height: 100%;
 }
 .notice .seconde_cards .two:nth-of-type(1) > .two_card {
   background-image: url(../img/main/section2/mobile-two-card1.png);
@@ -457,10 +465,37 @@ a:hover p {
 .notice .seconde_cards .two:nth-of-type(2) > .two_card {
   background-image: url(../img/main/section2/mobile-two-card2.png);
 }
+.notice .seconde_cards .two .two_card {
+  width: 100%;
+  height: 16.5vh;
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+}
+.notice .seconde_cards .two .two_txt {
+  background-color: #fff;
+  color: #222;
+  padding: 0.8rem;
+  min-height: 50px;
+}
+.notice .seconde_cards .two .two_txt p:first-child {
+  font-size: 0.7rem;
+  font-weight: bolder;
+}
+.notice .seconde_cards .two .two_txt p:last-child {
+  font-size: 0.5rem;
+  color: #666;
+}
 @media all and (min-width: 1024px) {
+  .notice .seconde_cards .two {
+    width: 323px;
+    height: 100%;
+    border-radius: 1rem;
+  }
   .notice .seconde_cards .two .two_card {
+    flex: 3 1 0;
+    min-height: 180px;
     width: 100%;
-    height: 20vh;
     background-size: cover;
     background-position: center;
     background-repeat: no-repeat;
@@ -472,34 +507,27 @@ a:hover p {
     background-image: url(../img/main/section2/pc-two-card2.png);
   }
   .notice .seconde_cards .two .two_txt {
-    padding: 1rem;
+    width: 100%;
+    height: 20%;
+    padding: 1.25rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: flex-start;
+    gap: 0.5rem;
+  }
+  .notice .seconde_cards .two .two_txt p {
+    margin-left: 1.2rem;
   }
   .notice .seconde_cards .two .two_txt p:first-child {
-    font-size: 1rem;
+    font-size: 1.5rem;
+    line-height: 1;
+    font-weight: 700;
   }
   .notice .seconde_cards .two .two_txt p:last-child {
-    font-size: 0.8rem;
+    font-size: 1rem;
+    color: #666;
   }
-}
-.notice .seconde_cards .two .two_card {
-  width: 250px;
-  height: 16.5vh;
-  background-size: cover;
-  background-position: center;
-  background-repeat: no-repeat;
-}
-.notice .seconde_cards .two .two_txt {
-  background-color: #fff;
-  color: #222;
-  padding: 0.8rem;
-}
-.notice .seconde_cards .two .two_txt p:first-child {
-  font-size: 0.7rem;
-  font-weight: bolder;
-}
-.notice .seconde_cards .two .two_txt p:last-child {
-  font-size: 0.5rem;
-  color: #666;
 }
 .notice .three_card {
   width: 100%;
@@ -511,26 +539,30 @@ a:hover p {
 }
 @media all and (min-width: 1024px) {
   .notice .three_card {
-    flex: 1;
+    flex: 2 1 0;
+    height: 0;
     display: flex;
-    flex-direction: column;
-    justify-content: flex-start;
+    flex-direction: row;
+    justify-content: center;
     align-items: stretch;
     gap: 1rem;
     margin: 0;
   }
 }
 .notice .three_card .three {
-  flex: 1;
-  width: 250px;
+  flex: 1 1 0;
+  width: 100%;
   height: 12vh;
-  margin: 0.3rem auto;
+  margin: 0.3rem 0;
   box-shadow: 2px 2px 6px rgba(114, 114, 114, 0.3);
-  border-radius: 4px;
+  border-radius: 1rem;
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
   cursor: pointer;
+}
+.notice .three_card .three:hover {
+  background-size: 140%;
 }
 .notice .three_card .three:first-child {
   background-image: url(../img/main/section2/mobile-three-card1.png);
@@ -546,11 +578,17 @@ a:hover p {
 }
 @media all and (min-width: 1024px) {
   .notice .three_card .three {
-    height: 120px;
+    height: 100%;
     margin: 0;
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    align-items: flex-start;
+    gap: 1rem;
   }
   .notice .three_card .three p {
-    font-size: 1rem;
+    font-size: 1.5rem;
+    font-weight: 900;
     padding: 1.5rem;
   }
 }
@@ -566,8 +604,10 @@ a:hover p {
 }
 @media all and (min-width: 1024px) {
   .gamsung {
-    height: 15vh;
+    height: 14vh;
     background-size: cover;
+    background-repeat: no-repeat;
+    background-position-y: bottom;
     display: flex;
     flex-direction: row;
     justify-content: center;
@@ -580,7 +620,7 @@ a:hover p {
 }
 @media all and (min-width: 1024px) {
   .gamsung h1 {
-    font-size: 1.8rem;
+    font-size: 1.5rem;
   }
 }
 @media all and (min-width: 1024px) {
@@ -592,6 +632,12 @@ a:hover p {
 section.introduce {
   margin: 1rem 0;
 }
+@media all and (min-width: 1024px) {
+  section.introduce {
+    height: 40vh;
+    padding: 3rem 0;
+  }
+}
 section.introduce h1 {
   font-size: 0.7rem;
   text-align: center;
@@ -600,8 +646,12 @@ section.introduce h1 {
 }
 @media all and (min-width: 1024px) {
   section.introduce h1 {
-    font-size: 1.5rem;
-    padding: 2rem 0 1rem;
+    font-size: 1.8rem;
+    font-weight: 900;
+    line-height: 1.25;
+    margin-bottom: 1.2rem;
+    padding: 2rem 0;
+    text-align: center;
   }
 }
 section.introduce ul {
@@ -615,15 +665,16 @@ section.introduce ul {
   section.introduce ul {
     display: flex;
     flex-direction: row;
-    justify-content: center;
-    align-items: center;
+    justify-content: space-between;
+    align-items: stretch;
     gap: 0.5rem;
     max-width: 1024px;
     margin: 0 auto;
     padding: 0 1rem 3rem;
+    flex-wrap: nowrap;
   }
 }
-section.introduce ul li.intro_card {
+section.introduce li.intro_card {
   width: 65%;
   height: 15vh;
   margin-top: 4px;
@@ -633,25 +684,25 @@ section.introduce ul li.intro_card {
   background-repeat: no-repeat;
   position: relative;
 }
-section.introduce ul li.intro_card:nth-child(1) {
+section.introduce li.intro_card:nth-child(1) {
   background-image: url(../img/main/section4/section4-1.png);
 }
-section.introduce ul li.intro_card:nth-child(2) {
+section.introduce li.intro_card:nth-child(2) {
   background-image: url(../img/main/section4/section4-2.png);
 }
-section.introduce ul li.intro_card:nth-child(3) {
+section.introduce li.intro_card:nth-child(3) {
   background-image: url(../img/main/section4/section4-3.png);
 }
-section.introduce ul li.intro_card:nth-child(4) {
+section.introduce li.intro_card:nth-child(4) {
   background-image: url(../img/main/section4/section4-4.png);
 }
-section.introduce ul li.intro_card:nth-child(5) {
+section.introduce li.intro_card:nth-child(5) {
   background-image: url(../img/main/section4/section4-5.png);
 }
-section.introduce ul li.intro_card:hover {
+section.introduce li.intro_card:hover {
   background-size: 120%;
 }
-section.introduce ul li.intro_card p {
+section.introduce li.intro_card p {
   position: absolute;
   bottom: 10px;
   left: 10px;
@@ -660,16 +711,38 @@ section.introduce ul li.intro_card p {
   font-weight: bolder;
 }
 @media all and (min-width: 1024px) {
-  section.introduce ul li.intro_card {
+  section.introduce li.intro_card {
     width: 180px;
-    height: 250px;
+    height: 300px;
     margin-top: 0;
     flex-shrink: 0;
+    border-radius: 1rem;
+    overflow: hidden;
+    position: relative;
+    box-shadow: 2px 2px 6px rgba(114, 114, 114, 0.3);
+    transition: transform 0.25s ease, box-shadow 0.25s ease, background-size 0.25s ease;
   }
-  section.introduce ul li.intro_card p {
-    font-size: 1rem;
-    bottom: 20px;
+  section.introduce li.intro_card::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    /* 상단은 투명, 하단 어둡게 지정  */
+    background: linear-gradient(to top, rgba(0, 0, 0, 0.8) 0%, rgba(0, 0, 0, 0.3) 35%, rgba(0, 0, 0, 0) 65%);
+    pointer-events: none;
+  }
+  section.introduce li.intro_card:hover {
+    background-size: 130%;
+    transform: translateY(-2px);
+  }
+  section.introduce li.intro_card p {
+    position: absolute;
     left: 20px;
+    bottom: 20px;
+    z-index: 20;
+    font-size: 1.3rem;
+    font-weight: 700;
+    text-shadow: 0 1px 2px rgba(0, 0, 0, 0.25);
+    margin: 0;
   }
 }
 
@@ -884,7 +957,6 @@ footer .logo_slide .logo_track {
   justify-content: flex-start;
   align-items: center;
   gap: 1.5rem;
-  width: -moz-fit-content;
   width: fit-content;
   padding: 0 1rem;
 }
@@ -895,8 +967,7 @@ footer .logo_slide .logo_track {
 }
 footer .logo_slide .logo_track img {
   height: 25px;
-  -o-object-fit: contain;
-     object-fit: contain;
+  object-fit: contain;
   opacity: 0.8;
   flex-shrink: 0;
 }

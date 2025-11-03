@@ -210,9 +210,7 @@ header {
           width: 33.3333%;
         }
       }
-
     }
-
   }
 }
 
@@ -310,9 +308,11 @@ header {
 
   // 아이콘 호버시 초록색 배경 전환
   &:hover {
-    background-image: linear-gradient(to bottom,
-        rgba(17, 187, 108, 0.2),
-        rgba(28, 192, 115, 0.6));
+    background-image: linear-gradient(
+      to bottom,
+      rgba(17, 187, 108, 0.2),
+      rgba(28, 192, 115, 0.6)
+    );
     border-radius: 4px;
   }
 
@@ -342,7 +342,6 @@ a:hover p {
     @include mix.flex_layout($just: space-between);
   }
 
-
   .right {
     width: calc(100% - 210px); // 남은 공간 차지
 
@@ -351,7 +350,6 @@ a:hover p {
       @include mix.flex_layout($just: space-around, $gap: 1rem);
 
       .go {
-
         a {
           padding: 1.5rem 10px; // 데스크탑에서 패딩 조정
 
@@ -387,8 +385,8 @@ a:hover p {
 
   // 반응형
   @include mix.desk {
-    height: 785px;
-    padding: 3rem 1rem;
+    height: 770px;
+    padding: 5rem 1rem 2.5rem;
   }
 
   // 제목
@@ -396,12 +394,13 @@ a:hover p {
     color: $font;
     text-align: center;
     font-size: 0.8rem;
-    padding: 1.2rem 0;
+    padding: 2rem 0;
 
     // 반응형
     @include mix.desk {
       font-size: 1.9rem; // 제목 크기 확대
       padding: 0 0 2rem 0;
+      margin-bottom: 1rem;
     }
   }
 
@@ -413,17 +412,15 @@ a:hover p {
     // 반응형
     @include mix.desk {
       max-width: 1024px;
-      display: grid;
-      // 3열 레이아웃
-      grid-template-columns: repeat(3, 1fr);
-      gap: 1rem;
+      @include mix.flex_layout($just: space-between, $align: stretch);
       width: 100%;
+      height: 600px;
     }
   }
 
   // 첫번째 카드
   .first_card {
-    width: 70%;
+    width: 100%;
     height: 220px;
     margin: 0 auto 0.8rem;
     border-radius: $card_radius;
@@ -435,16 +432,16 @@ a:hover p {
     position: relative;
 
     &:hover {
-      background-size: 150%;
+      background-size: 140%;
     }
 
+    // 첫번째 카드 반응형 처리
     @include mix.desk {
-      width: 100%;
-      height: 600px;
+      width: 306px;
+      height: 100%;
       margin: 0;
-
+      border-radius: 1rem;
       background-image: url(../img/main/section2/pc-first-card1.jpg);
-
     }
   }
 
@@ -462,47 +459,51 @@ a:hover p {
     }
   }
 
+  // 두번째 세번째 카드영역 묶음
+
   .main-right-section {
     width: 100%;
-    @include mix.flex_layout($dire: column, $gap: 0.8rem, $just: flex-start, $align: flex-start);
+    @include mix.flex_layout($dire: column, $align: stretch, $gap: 0.8rem);
 
     // 반응형
     @include mix.desk {
-      // pc : 가로 정렬
-      width: 100%;
-      margin: 0 auto;
-      @include mix.flex_layout( $align: stretch);
+      width: auto;
+      height: 100%;
+      // @include mix.flex_layout($dire:column ,$just : space-between, $align: stretch);
+      @include mix.flex_layout($dire: column, $align: stretch);
       flex: 1;
     }
   }
 
-
-  /* ---------------------------------------------------- */
   /* 두번째 카드 영역: .seconde_cards (보도자료/성명서) */
-  /* ---------------------------------------------------- */
   .seconde_cards {
     width: 100%;
     margin-top: 0.8rem;
-    @include mix.flex_layout($gap: 0.5rem); // 모바일: 가로 2열
+    @include mix.flex_layout($gap: 0.5rem);
 
     @include mix.desk {
-      // 🚨 수정: 부모(.main-right-section)의 flex-item으로 동작. 너비 지정.
+      // width: 500px;
+      flex: 3 1 0;
+      height: 0;
       width: auto;
-      flex: 1; // 공간을 채우도록 설정
-      max-width: 400px; // 원본 이미지와 비슷하게 너비를 제한할 경우 사용 (선택 사항)
-      @include mix.flex_layout($dire: column, $gap: 1rem); // 데스크톱: 세로로 쌓기
+      @include mix.flex_layout($align: stretch);
       margin-top: 0;
     }
 
-    >div {
+    // two카드 공통 지정
+    > div {
       border-radius: $card_radius;
       box-shadow: $shadow;
       overflow: hidden;
+      flex: 1;
+      // 이미지 - 텍스트 비율 고정
+      @include mix.flex_layout($dire: column, $gap: 0);
+      min-width: 0;
     }
 
     // hover
     &:hover {
-      div.two_txt>p {
+      div.two_txt > p {
         &:last-child {
           color: $point;
         }
@@ -515,51 +516,18 @@ a:hover p {
 
     // 카드
     .two {
-      flex: 1; // 모바일: 가로 공간을 균등하게 나눔. 데스크톱: 세로 높이를 균등하게 나눔.
+      height: 100%;
 
-      &:nth-of-type(1)>.two_card {
+      &:nth-of-type(1) > .two_card {
         background-image: url(../img/main/section2/mobile-two-card1.png);
       }
 
-      &:nth-of-type(2)>.two_card {
+      &:nth-of-type(2) > .two_card {
         background-image: url(../img/main/section2/mobile-two-card2.png);
       }
 
-      // 반응형 
-      @include mix.desk {
-
-        .two_card {
-          width: 100%;
-          height: 20vh;
-          background-size: cover;
-          background-position: center;
-          background-repeat: no-repeat;
-        }
-
-        &:nth-of-type(1)>.two_card {
-          background-image: url(../img/main/section2/pc-two-card1.png);
-        }
-
-        &:nth-of-type(2)>.two_card {
-          background-image: url(../img/main/section2/pc-two-card2.png);
-        }
-
-        .two_txt {
-          padding: 1rem;
-
-          p:first-child {
-            font-size: 1rem;
-          }
-
-          p:last-child {
-            font-size: 0.8rem;
-          }
-        }
-      }
-
-
       .two_card {
-        width: 250px; // 모바일 기본 너비
+        width: 100%;
         height: 16.5vh;
         background-size: cover;
         background-position: center;
@@ -571,6 +539,7 @@ a:hover p {
         background-color: $bg;
         color: $font;
         padding: 0.8rem;
+        min-height: 50px;
 
         p {
           &:first-child {
@@ -584,35 +553,87 @@ a:hover p {
           }
         }
       }
+
+      // 반응형
+      @include mix.desk {
+        width: 323px;
+        height: 100%;
+        border-radius: 1rem;
+
+        .two_card {
+          flex: 3 1 0;
+          min-height: 180px;
+          width: 100%;
+          background-size: cover;
+          background-position: center;
+          background-repeat: no-repeat;
+        }
+
+        &:nth-of-type(1) > .two_card {
+          background-image: url(../img/main/section2/pc-two-card1.png);
+        }
+
+        &:nth-of-type(2) > .two_card {
+          background-image: url(../img/main/section2/pc-two-card2.png);
+        }
+
+        .two_txt {
+          width: 100%;
+          height: 20%;
+          padding: 1.25rem;
+          @include mix.flex_layout(
+            $dire: column,
+            $align: flex-start,
+            $gap: 0.5rem
+          );
+
+          p {
+            margin-left: 1.2rem;
+
+            &:first-child {
+              font-size: 1.5rem;
+              line-height: 1;
+              font-weight: 700;
+            }
+
+            &:last-child {
+              font-size: 1rem;
+              color: #666;
+            }
+          }
+        }
+      }
     }
   }
 
-  /* ---------------------------------------------------- */
   /* 세번째 카드 묶음: .three_card (공지사항/방송가 뉴스) */
-  /* ---------------------------------------------------- */
   .three_card {
     width: 100%;
-    @include mix.flex_layout($gap: 0.5rem); // 모바일: 가로 2열
+    @include mix.flex_layout($gap: 0.5rem);
 
     // 반응형
     @include mix.desk {
-      // 🚨 수정: 부모(.main-right-section)의 flex-item으로 동작
-      flex: 1; // 남은 공간을 채우도록 설정
-      @include mix.flex_layout($dire: column, $gap: 1rem, $just: flex-start, $align: stretch); // 데스크톱: 세로로 쌓기
+      flex: 2 1 0;
+      height: 0;
+      @include mix.flex_layout($align: stretch);
       margin: 0;
     }
 
     .three {
-      flex: 1; // 모바일: 가로 공간을 균등하게 나눔. 데스크톱: 세로 높이를 균등하게 나눔.
-      width: 250px;
+      flex: 1 1 0;
+      width: 100%;
       height: 12vh;
-      margin: 0.3rem auto;
+      margin: 0.3rem 0;
       box-shadow: $shadow;
-      border-radius: $card_radius;
+      border-radius: 1rem;
       background-size: cover;
       background-position: center;
       background-repeat: no-repeat;
       cursor: pointer;
+
+      &:hover {
+        background-size: 140%;
+      }
 
       &:first-child {
         background-image: url(../img/main/section2/mobile-three-card1.png);
@@ -631,11 +652,13 @@ a:hover p {
 
       // 반응형
       @include mix.desk {
-        height: 120px;
+        height: 100%;
         margin: 0;
+        @include mix.flex_layout($just: flex-start, $align: flex-start);
 
         p {
-          font-size: 1rem;
+          font-size: 1.5rem;
+          font-weight: 900;
           padding: 1.5rem;
         }
       }
@@ -654,8 +677,10 @@ a:hover p {
   box-sizing: border-box;
 
   @include mix.desk {
-    height: 15vh;
+    height: 14vh;
     background-size: cover;
+    background-repeat: no-repeat;
+    background-position-y: bottom;
     @include mix.flex_layout();
   }
 
@@ -663,7 +688,7 @@ a:hover p {
     font-size: 0.7rem;
 
     @include mix.desk {
-      font-size: 1.8rem;
+      font-size: 1.5rem;
     }
 
     br {
@@ -677,6 +702,11 @@ a:hover p {
 // section_introduce 영역 시작
 section.introduce {
   margin: 1rem 0;
+  @include mix.desk{
+    // background-color: tomato;
+    height: 40vh;
+    padding: 3rem 0;
+  }
 
   h1 {
     font-size: 0.7rem;
@@ -686,21 +716,27 @@ section.introduce {
 
     // 반응형
     @include mix.desk {
-      font-size: 1.5rem;
-      padding: 2rem 0 1rem;
+      font-size: 1.8rem;
+      font-weight: 900;
+      line-height: 1.25;
+      margin-bottom: 1.2rem;
+      padding: 2rem 0;
+      text-align: center;
     }
   }
 
   ul {
     @include mix.flex_layout($dire: column, $just: space-around, $gap: 4px);
 
+    //반응형
     @include mix.desk {
-      @include mix.flex_layout($dire: row, $just: center, $gap: 0.5rem); // 5열 가로 배치
+      @include mix.flex_layout($just: space-between, $align: stretch, $gap: 0.5rem);
       max-width: 1024px;
       margin: 0 auto;
       padding: 0 1rem 3rem;
+      flex-wrap: nowrap;
     }
-
+  }
 
     li.intro_card {
       width: 65%;
@@ -750,23 +786,51 @@ section.introduce {
 
       @include mix.desk {
         width: 180px;
-        height: 250px;
+        height: 300px;
         margin-top: 0;
         flex-shrink: 0; // 유동적인 크기 방지
+        border-radius: 1rem;
+        overflow: hidden;
+        position: relative;
+        box-shadow: $shadow;
+        transition: transform .25s ease, box-shadow .25s ease, background-size .25s ease;
+
+        &::after {
+        content: "";
+        position: absolute;
+        inset: 0;
+        /* 상단은 투명, 하단 어둡게 지정  */
+        background: linear-gradient(
+          to top,
+          rgba(0,0,0,0.8) 0%,
+          rgba(0,0,0,0.3) 35%,
+          rgba(0,0,0,0.00) 65%
+        );
+        pointer-events: none;
+        }
+
+        &:hover{
+          background-size: 130%;
+          transform: translateY(-2px);
+        }
 
         p {
-          font-size: 1rem;
-          bottom: 20px;
+          position: absolute;
           left: 20px;
+          bottom: 20px;
+          z-index: 20;
+          font-size: 1.3rem;
+          font-weight: 700;
+          text-shadow: 0 1px 2px rgba(0,0,0,.25);
+          margin: 0;
         }
       }
     }
-  }
+  
 }
 
 // section5 영역 시작
 
-// ---자세히 보러가기 부분 수정 필요---
 .business {
   padding: $base_padding;
   height: 55vh;
@@ -877,19 +941,19 @@ section.introduce {
         }
 
         // 배경 이미지 설정 (모바일과 동일)
-        &:nth-of-type(1)>.left {
+        &:nth-of-type(1) > .left {
           background-image: url(../img/main/section5/section5-1.png);
         }
 
-        &:nth-of-type(2)>.left {
+        &:nth-of-type(2) > .left {
           background-image: url(../img/main/section5/section5-2.png);
         }
 
-        &:nth-of-type(3)>.left {
+        &:nth-of-type(3) > .left {
           background-image: url(../img/main/section5/section5-3.png);
         }
 
-        &:nth-of-type(4)>.left {
+        &:nth-of-type(4) > .left {
           background-image: url(../img/main/section5/section5-4.png);
         }
 
@@ -940,7 +1004,11 @@ section.introduce {
         li {
           // 겹치는 설정 해제
           position: static;
-          @include mix.flex_layout($just: space-around, $align: center, $gap: 2rem); // 좌우 분할 레이아웃
+          @include mix.flex_layout(
+            $just: space-around,
+            $align: center,
+            $gap: 2rem
+          ); // 좌우 분할 레이아웃
           padding: 2rem;
           height: 100%;
 
@@ -982,8 +1050,7 @@ section.introduce {
   }
 }
 
-
-// footer 영역 시작 
+// footer 영역 시작
 
 footer {
   // 배경색 및 기본 설정
@@ -1029,16 +1096,30 @@ footer {
     padding: 2rem 1.5rem 2.5rem;
 
     @include mix.desk {
-      @include mix.flex_layout($just: space-between, $align: center, $gap: 3rem); // 가로 배치
+      @include mix.flex_layout(
+        $just: space-between,
+        $align: center,
+        $gap: 3rem
+      ); // 가로 배치
       padding: 3rem 1.5rem;
     }
 
     .kba_info {
-      @include mix.flex_layout($dire: column, $just: flex-start, $align: flex-start, $gap: 0.8rem);
+      @include mix.flex_layout(
+        $dire: column,
+        $just: flex-start,
+        $align: flex-start,
+        $gap: 0.8rem
+      );
 
       @include mix.desk {
         width: 100%;
-        @include mix.flex_layout($dire: row, $just: flex-start, $align: flex-start, $gap: 3rem);
+        @include mix.flex_layout(
+          $dire: row,
+          $just: flex-start,
+          $align: flex-start,
+          $gap: 3rem
+        );
         flex-wrap: wrap; // 좁아지면 줄바꿈
       }
 
@@ -1074,7 +1155,12 @@ footer {
         }
 
         @include mix.desk {
-          @include mix.flex_layout($dire: column, $just: flex-start, $align: flex-start, $gap: 0.5rem);
+          @include mix.flex_layout(
+            $dire: column,
+            $just: flex-start,
+            $align: flex-start,
+            $gap: 0.5rem
+          );
         }
       }
 
@@ -1095,5 +1181,4 @@ footer {
       }
     }
   }
-
 }
