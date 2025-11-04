@@ -847,11 +847,12 @@ section.introduce {
   }
 
   h1 {
-    text-align: left;
+    text-align: center;
     font-size: 0.8rem;
     padding: 0.5rem;
 
     @include mix.desk {
+      text-align: left;
       font-size: 2rem;
       padding-bottom: 2.3rem;
     }
