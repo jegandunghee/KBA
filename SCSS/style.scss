@@ -483,7 +483,7 @@ a:hover p {
   .seconde_cards {
     width: 100%;
     margin-top: 0.8rem;
-    @include mix.flex_layout($gap: 0.5rem);
+    @include mix.flex_layout($gap: 0.5rem, $align:stretch);
 
     @include mix.desk {
       // width: 500px;
@@ -496,12 +496,12 @@ a:hover p {
 
     // two카드 공통 지정
     > div {
-      border-radius: $card_radius;
+      border-radius: 0.5rem;
       box-shadow: $shadow;
       overflow: hidden;
       flex: 1;
       // 이미지 - 텍스트 비율 고정
-      @include mix.flex_layout($dire: column, $gap: 0);
+      @include mix.flex_layout($dire: column, $gap: 0, $align:stretch);
       min-width: 0;
     }
 
@@ -540,6 +540,7 @@ a:hover p {
 
       // 텍스트
       .two_txt {
+        width: 100%;
         background-color: $bg;
         color: $font;
         padding: 0.8rem;
@@ -629,7 +630,7 @@ a:hover p {
       height: 12vh;
       margin: 0.3rem 0;
       box-shadow: $shadow;
-      border-radius: 1rem;
+      border-radius: 0.5rem;
       background-size: cover;
       background-position: center;
       background-repeat: no-repeat;
