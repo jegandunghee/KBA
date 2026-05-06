@@ -5,6 +5,9 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
+  <!-- 파비콘 연결 -->
+  <link rel="icon" type="image/svg+xml" href="./favicon.svg" />
+
   <!-- css 연결 -->
   <link rel="stylesheet" href="./css/reset.css" />
   <link rel="stylesheet" href="./css/style.css" />
@@ -13,20 +16,33 @@
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.1/css/all.min.css"
     integrity="sha512-2SwdPD6INVrV/lHTZbO2nodKhrnDdJK9/kg2XD1r9uGqPo1cUbujc+IYdlYdEErWNu69gVcYgdxlmVmzTWnetw=="
     crossorigin="anonymous" referrerpolicy="no-referrer" />
-  <!-- 폰트 -->
-
-  <title>한국방송협회-클론</title>
+  
+  <title data-i18n="title">나의 개발 블로그 포트폴리오</title>
 </head>
 
 <body>
   <!-- 헤더 영역 -->
   <header>
+    <!-- 헤더 배경 슬라이드 애니메이션 영역 -->
+    <div class="header-slider-wrap">
+      <div class="slider-track" id="header-slider-track">
+        <div class="slide slide-1"></div>
+        <div class="slide slide-2"></div>
+        <div class="slide slide-3"></div>
+      </div>
+    </div>
+
     <!-- 상단 메뉴바 모바일 ( 상단 고정) -->
     <div class="t_menu_mobile">
-      <h1>한국방송협회</h1>
+      <h1 data-i18n="logo" style="cursor: pointer;">My Dev Blog</h1>
       <div class="menu_icon">
-        <i class="fa-solid fa-magnifying-glass"></i>
-        <i class="fa-solid fa-bars"></i>
+        <div class="lang-mobile">
+          <a href="#" class="lang-btn" data-lang="ko" style="cursor: pointer;">KR</a> / 
+          <a href="#" class="lang-btn" data-lang="en" style="cursor: pointer;">EN</a>
+        </div>
+        <i class="fa-solid fa-magnifying-glass" style="cursor: pointer;"></i>
+        <!-- 모바일 메뉴 토글 버튼 -->
+        <i class="fa-solid fa-bars" id="mobile-menu-btn" style="cursor: pointer;"></i>
       </div>
     </div>
 
@@ -34,27 +50,27 @@
     <div class="t_menu_pc">
       <!-- 언어 설정(상단 고정) -->
       <div class="lang">
-        <a href="#">KOR</a>
+        <a href="#" class="lang-btn" data-lang="ko" style="cursor: pointer;">KOR</a>
         <p>/</p>
-        <a href="#">ENG</a>
+        <a href="#" class="lang-btn" data-lang="en" style="cursor: pointer;">ENG</a>
       </div>
 
       <hr />
 
       <!-- pc 메뉴 -->
       <div class="pc_menu">
-        <h1>한국방송협회</h1>
+        <h1 data-i18n="logo" style="cursor: pointer;">My Dev Blog</h1>
         <div class="pc_menu_list">
-          <a href="#">협회소개</a>
-          <a href="#">알림광장</a>
-          <a href="#">방송정책</a>
-          <a href="#">주요사업</a>
-          <a href="#">한국방송대상</a>
-          <a href="#">서울드라마어워즈</a>
+          <a href="#about" data-i18n="menu1" style="cursor: pointer;">About Me</a>
+          <a href="#tech" data-i18n="menu2" style="cursor: pointer;">Tech Stack</a>
+          <a href="#features" data-i18n="menu3" style="cursor: pointer;">Features</a>
+          <a href="#blog" data-i18n="menu4" style="cursor: pointer;">Blog Posts</a>
+          <a href="#contact" data-i18n="menu5" style="cursor: pointer;">Contact</a>
         </div>
         <div class="pc_menu_icon">
-          <i class="fa-solid fa-magnifying-glass"></i>
-          <i class="fa-solid fa-bars"></i>
+          <i class="fa-solid fa-magnifying-glass" style="cursor: pointer;"></i>
+          <!-- PC에서는 사용되지 않지만 기존 구조 유지 -->
+          <i class="fa-solid fa-bars" style="cursor: pointer;"></i>
         </div>
       </div>
     </div>
@@ -62,8 +78,8 @@
     <!-- 배너 하단 바 -->
     <div class="banner_bar">
       <div class="bar_icon">
-        <i class="fa-solid fa-chevron-left"></i>
-        <i class="fa-solid fa-chevron-right"></i>
+        <i class="fa-solid fa-chevron-left" style="cursor: pointer;"></i>
+        <i class="fa-solid fa-chevron-right" style="cursor: pointer;"></i>
       </div>
       <div class="bar_back">
         <div class="bar_in"></div>
@@ -71,56 +87,40 @@
     </div>
   </header>
 
-  <!-- 메인영역  > section 5개 -->
+  <!-- 메인영역 -->
   <main>
-    <!-- 바로가기 영역 시작-->
-    <section class="info">
+    <!-- 빠른 링크 영역 시작-->
+    <section class="info" id="about">
       <div class="info-container">
         <div class="left">
-          <h1>한국방송협회 바로가기 링크</h1>
-          <p>자주 찾는 서비스를 안내해드립니다.</p>
+          <h1 data-i18n="sec1_title">빠른 링크</h1>
+          <p data-i18n="sec1_desc">제가 주로 활동하는 채널입니다.</p>
         </div>
 
         <div class="right">
           <ul>
             <li class="go">
-              <a href="#">
+              <a href="#" style="cursor: pointer;">
                 <div class="icon-box">
-                  <img src="./img/main/section1-1.png" alt="계간방송문화 아이콘" />
+                  <i class="fa-brands fa-github" style="font-size: 2rem;"></i>
                 </div>
-                <p>계간 방송문화</p>
+                <p data-i18n="link1">GitHub</p>
               </a>
             </li>
             <li class="go">
-              <a href="#">
+              <a href="#" style="cursor: pointer;">
                 <div class="icon-box">
-                  <img src="./img/main/section1-2.png" alt="뉴스레터 아이콘" />
+                  <i class="fa-solid fa-file-lines" style="font-size: 2rem;"></i>
                 </div>
-                <p>뉴스레터BC</p>
+                <p data-i18n="link3">이력서</p>
               </a>
             </li>
             <li class="go">
-              <a href="#">
+              <a href="#" style="cursor: pointer;">
                 <div class="icon-box">
-                  <img src="./img/main/section1-3.png" alt="방송광고심의 아이콘" />
+                  <i class="fa-solid fa-envelope" style="font-size: 2rem;"></i>
                 </div>
-                <p>방송광고심의</p>
-              </a>
-            </li>
-            <li class="go">
-              <a href="#">
-                <div class="icon-box">
-                  <img src="./img/main/section1-4.png" alt="한국방송대상 아이콘" />
-                </div>
-                <p>한국방송대상</p>
-              </a>
-            </li>
-            <li class="go">
-              <a href="#">
-                <div class="icon-box">
-                  <img src="./img/main/section1-5.png" alt="서울드라마어워즈 아이콘" />
-                </div>
-                <p>서울드라마 어워즈</p>
+                <p data-i18n="link5">이메일</p>
               </a>
             </li>
           </ul>
@@ -128,15 +128,15 @@
       </div>
     </section>
 
-    <!-- 알림광장 영역 시작-->
-    <section class="notice">
-      <h1>한국방송협회 알림광장</h1>
+    <!-- 기술 스택 영역 시작-->
+    <section class="notice" id="tech">
+      <h1 data-i18n="sec2_title">나의 기술 스택</h1>
       <div class="cards">
         <!-- 첫번째 카드 -->
-        <div class="first_card">
+        <div class="first_card" style="cursor: pointer;">
           <div class="first_icon">
-            <i class="fa-solid fa-chevron-left"></i>
-            <i class="fa-solid fa-chevron-right"></i>
+            <i class="fa-solid fa-chevron-left" style="cursor: pointer;"></i>
+            <i class="fa-solid fa-chevron-right" style="cursor: pointer;"></i>
           </div>
         </div>
         
@@ -145,31 +145,31 @@
 
           <!-- 두번째 카드 -->
           <div class="seconde_cards">
-            <div class="two">
+            <div class="two" style="cursor: pointer;">
               <div class="two_card"></div>
               <div class="two_txt">
-                <p>보도자료</p>
-                <p>자세히 보기 +</p>
+                <p data-i18n="tech1">React & Vue</p>
+                <p data-i18n="more">자세히 보기 +</p>
               </div>
             </div>
 
-            <div class="two">
+            <div class="two" style="cursor: pointer;">
               <div class="two_card"></div>
               <div class="two_txt">
-                <p>성명서</p>
-                <p>자세히 보기 +</p>
+                <p data-i18n="tech2">Vanilla JS</p>
+                <p data-i18n="more">자세히 보기 +</p>
               </div>
             </div>
           </div>
 
           <!-- 세번째 카드 -->
           <div class="three_card">
-            <div class="three">
-              <p>공지사항</p>
+            <div class="three" style="cursor: pointer;">
+              <p data-i18n="tech3">HTML / CSS</p>
             </div>
 
-            <div class="three">
-              <p>방송가 뉴스</p>
+            <div class="three" style="cursor: pointer;">
+              <p data-i18n="tech4">SCSS / Tailwind</p>
             </div>
           </div>
         </div>
@@ -177,99 +177,100 @@
     </section>
 
     <!-- 감성글귀 영역 시작  -->
-    <section class="gamsung">
-      <h1>
-        당신의 내일에 <br class="desk-hidden" />지상파 방송이 함께 합니다.
+    <section class="gamsung" id="features">
+      <h1 data-i18n="sec3_quote">
+        사용자 경험을 생각하는 <br class="desk-hidden" />프론트엔드 개발자입니다.
       </h1>
     </section>
 
-    <!-- KBA소개 영역 시작  -->
+    <!-- 프로젝트 소개 영역 시작  -->
     <section class="introduce">
-      <h1>한국방송협회를 소개합니다.</h1>
+      <h1 data-i18n="sec4_title">프로젝트 소개</h1>
       <ul>
-        <li class="intro_card">
-          <p>인사말</p>
+        <li class="intro_card" style="cursor: pointer;">
+          <div class="overlay"></div>
+          <p data-i18n="intro1" class="hover-text">소개글</p>
         </li>
-        <li class="intro_card">
-          <p>회원사</p>
+        <li class="intro_card" style="cursor: pointer;">
+          <div class="overlay"></div>
+          <p data-i18n="intro2" class="hover-text">아키텍처</p>
         </li>
-        <li class="intro_card">
-          <p>연혁</p>
+        <li class="intro_card" style="cursor: pointer;">
+          <div class="overlay"></div>
+          <p data-i18n="intro3" class="hover-text">핵심 코드</p>
         </li>
-        <li class="intro_card">
-          <p>조직도</p>
+        <li class="intro_card" style="cursor: pointer;">
+          <div class="overlay"></div>
+          <p data-i18n="intro4" class="hover-text">배포(CI/CD)</p>
         </li>
-        <li class="intro_card">
-          <p>오시는길</p>
+        <li class="intro_card" style="cursor: pointer;">
+          <div class="overlay"></div>
+          <p data-i18n="intro5" class="hover-text">로드맵</p>
         </li>
       </ul>
     </section>
 
-    <!-- 주요사업소개 영역 시작 -->
-    <section class="business">
-      <h1>주요사업소개</h1>
+    <!-- 주요 포스트 탭 영역 시작 -->
+    <section class="business" id="blog">
+      <h1 data-i18n="sec5_title">주요 블로그 포스트</h1>
 
       <div class="content">
         <!-- 탭메뉴 -->
         <ul class="tap_menu">
-          <li>
-            <h3>방송의 날 축하연</h3>
+          <li data-tab="0" class="active" style="cursor: pointer;">
+            <h3 data-i18n="post1_tab">반응형 웹 디자인이란?</h3>
           </li>
-          <li>
-            <h3>방송사 공동 예측조사</h3>
+          <li data-tab="1" style="cursor: pointer;">
+            <h3 data-i18n="post2_tab">JavaScript ES6+ 핵심 문법</h3>
           </li>
-          <li>
-            <h3>저작권 실무조정위원회</h3>
+          <li data-tab="2" style="cursor: pointer;">
+            <h3 data-i18n="post3_tab">성능 최적화 가이드</h3>
           </li>
-          <li>
-            <h3>방송광고심의</h3>
+          <li data-tab="3" style="cursor: pointer;">
+            <h3 data-i18n="post4_tab">웹 접근성 높이기</h3>
           </li>
         </ul>
 
         <!-- 탭 콘텐츠  -->
         <ul class="tap_content">
-          <li>
-            <div class="left"></div>
+          <li class="tab-pane active" data-content="0">
+            <div class="left" style="background-image: url('./img/main/section5/section5-1.png');"></div>
             <div class="right">
-              <h2>방송의 날 축하연</h2>
-              <p>
-                대한민국 방송 주권 회복일인 방송의 날을 기념하고 방송발전과
-                방송인의 노고를 기립니다.
+              <h2 data-i18n="post1_title">반응형 웹 디자인 적용기</h2>
+              <p data-i18n="post1_desc">
+                다양한 디바이스에서 최적의 뷰를 제공하기 위해 미디어 쿼리와 유연한 그리드를 적용한 경험을 공유합니다.
               </p>
-              <a href="#">자세히 보러가기</a>
+              <a href="#" data-i18n="read_more" style="cursor: pointer;">자세히 보러가기</a>
             </div>
           </li>
-          <li>
-            <div class="left"></div>
+          <li class="tab-pane" data-content="1">
+            <div class="left" style="background-image: url('./img/main/section5/section5-2.png');"></div>
             <div class="right">
-              <h2>방송사 공통 예측조사</h2>
-              <p>
-                방송사 공동 예측조사를 통해 유권자에게 신속하고신뢰성 높은
-                선거 예측 정보를 제공합니다.
+              <h2 data-i18n="post2_title">JavaScript ES6+ 활용</h2>
+              <p data-i18n="post2_desc">
+                최신 자바스크립트 문법(Arrow Function, Destructuring, async/await 등)을 활용하여 코드를 개선한 사례입니다.
               </p>
-              <a href="#">자세히 보러가기</a>
+              <a href="#" data-i18n="read_more" style="cursor: pointer;">자세히 보러가기</a>
             </div>
           </li>
-          <li>
-            <div class="left"></div>
+          <li class="tab-pane" data-content="2">
+            <div class="left" style="background-image: url('./img/main/section5/section5-3.png');"></div>
             <div class="right">
-              <h2>저작권 실무조정위원회</h2>
-              <p>
-                회원사의 효율적인 저작권 관리와 원활한 저작권 환경을 조성하기
-                위해 저작권 실무를 담당합니다.
+              <h2 data-i18n="post3_title">웹 성능 최적화 경험</h2>
+              <p data-i18n="post3_desc">
+                이미지 지연 로딩(Lazy Loading) 및 리소스 압축을 통해 페이지 로딩 속도를 크게 개선한 방법을 다룹니다.
               </p>
-              <a href="#">자세히 보러가기</a>
+              <a href="#" data-i18n="read_more" style="cursor: pointer;">자세히 보러가기</a>
             </div>
           </li>
-          <li>
-            <div class="left"></div>
+          <li class="tab-pane" data-content="3">
+            <div class="left" style="background-image: url('./img/main/section5/section5-4.png');"></div>
             <div class="right">
-              <h2>방송광고심의</h2>
-              <p>
-                광고의 신뢰성을 높이고 방송의 사회적 책임을 다하기 위해 방송사
-                자율광고심의를 수행합니다.
+              <h2 data-i18n="post4_title">접근성을 고려한 마크업</h2>
+              <p data-i18n="post4_desc">
+                모든 사용자가 동등하게 정보를 얻을 수 있도록 시맨틱 태그와 WAI-ARIA를 적용한 과정을 소개합니다.
               </p>
-              <a href="#">자세히 보러가기</a>
+              <a href="#" data-i18n="read_more" style="cursor: pointer;">자세히 보러가기</a>
             </div>
           </li>
         </ul>
@@ -278,53 +279,58 @@
   </main>
 
   <!-- 푸터 영역 -->
-  <footer>
+  <footer id="contact">
     <div class="logo_slide">
       <div class="logo_track">
-        <img src="./img/footer/footer_1.jpg" alt="방송사 로고" />
-        <img src="./img/footer/footer_2.png" alt="방송사 로고" />
-        <img src="./img/footer/footer_3.jpg" alt="방송사 로고" />
-        <img src="./img/footer/footer_4.jpg" alt="방송사 로고" />
-        <img src="./img/footer/footer_5.jpg" alt="방송사 로고" />
-        <img src="./img/footer/footer_6.jpg" alt="방송사 로고" />
-        <img src="./img/footer/footer_7.jpg" alt="방송사 로고" />
-        <img src="./img/footer/footer_8.jpg" alt="방송사 로고" />
-        <img src="./img/footer/footer_9.jpg" alt="방송사 로고" />
-        <img src="./img/footer/footer_10.jpg" alt="방송사 로고" />
-        <img src="./img/footer/footer_11.jpg" alt="방송사 로고" />
-        <img src="./img/footer/footer_12.jpg" alt="방송사 로고" />
-        <img src="./img/footer/footer_13.jpg" alt="방송사 로고" />
-        <img src="./img/footer/footer_14.jpg" alt="방송사 로고" />
-        <img src="./img/footer/footer_15.jpg" alt="방송사 로고" />
-        <img src="./img/footer/footer_16.jpg" alt="방송사 로고" />
-        <img src="./img/footer/footer_17.jpg" alt="방송사 로고" />
+        <!-- 첫번째 세트 -->
+        <i class="fa-brands fa-html5"></i>
+        <i class="fa-brands fa-css3-alt"></i>
+        <i class="fa-brands fa-js"></i>
+        <i class="fa-brands fa-react"></i>
+        <i class="fa-brands fa-github"></i>
+        <i class="fa-brands fa-node-js"></i>
+        <i class="fa-brands fa-sass"></i>
+        <i class="fa-brands fa-figma"></i>
+        <!-- 두번째 세트 복제 -->
+        <i class="fa-brands fa-html5"></i>
+        <i class="fa-brands fa-css3-alt"></i>
+        <i class="fa-brands fa-js"></i>
+        <i class="fa-brands fa-react"></i>
+        <i class="fa-brands fa-github"></i>
+        <i class="fa-brands fa-node-js"></i>
+        <i class="fa-brands fa-sass"></i>
+        <i class="fa-brands fa-figma"></i>
       </div>
     </div>
 
     <div class="footer_content">
       <div class="kba_info">
-        <h1 class="kba_logo">한국방송협회</h1>
+        <h1 class="kba_logo" data-i18n="logo" style="cursor: pointer;">My Dev Blog</h1>
 
         <div class="contact_info">
-          <p class="address_line">
-            [07995] 서울시 양천구 목동동로 233 방송회관 10층 한국방송협회
+          <p class="address_line" data-i18n="footer_addr">
+            [00000] 서울시 어딘가 코딩하는 방 101호
           </p>
           <p class="tel_fax_email">
-            대표전화 : 02 - 3219 - 5560 &nbsp; 팩스 : 02 - 3219 - 5570
+            <span data-i18n="footer_tel">대표전화 : 010 - 1234 - 5678</span> &nbsp; 
+            <span data-i18n="footer_fax">팩스 : 02 - 123 - 4567</span>
           </p>
           <p class="tel_fax_email">
-            이메일 : kba@kba.or.kr
+            <span data-i18n="footer_email">이메일 : dev@myblog.com</span>
           </p>
         </div>
 
         <p class="copyright">
-          COPYRIGHT© KOREAN BROADCASTERS ASSOCIATION.
+          COPYRIGHT© MY DEV BLOG PORTFOLIO.
           <br />
           ALL RIGHT RESERVED.
         </p>
       </div>
     </div>
   </footer>
+
+  <!-- ES6+ 자바스크립트 연결 -->
+  <script src="./script.js"></script>
 </body>
 
 </html>

@@ -7,21 +7,41 @@
 // 모바일 480px 데스크탑 1024px 로 지정 후 만들기
 
 header {
-  // header 전체 영역 - bg-img, 높이, 반응형
   height: 78vh;
-  background-image: url(../img/header/banner01.jpg);
-  background-size: cover;
-  background-repeat: no-repeat;
-  background-position: center;
   position: relative;
   overflow: hidden;
 
   @include mix.desk {
     height: 45vh;
-    background-image: url(../img/pc/header/banner_pc_01.jpg);
-    background-size: cover;
-    background-repeat: no-repeat;
-    background-position: center;
+  }
+
+  .header-slider-wrap {
+    position: absolute;
+    top: 0; left: 0;
+    width: 100%; height: 100%;
+    z-index: -1;
+
+    .slider-track {
+      display: flex;
+      width: 300%;
+      height: 100%;
+      transition: transform 0.8s ease-in-out;
+
+      .slide {
+        width: 33.333333%;
+        height: 100%;
+        background-size: cover;
+        background-position: center;
+
+        &.slide-1 { background-image: url(../img/header/banner01.jpg); }
+        &.slide-2 { background-image: url(../img/header/banner02.jpg); }
+        &.slide-3 { background-image: url(../img/header/banner03.jpg); }
+
+        @include mix.desk {
+          &.slide-1 { background-image: url(../img/pc/header/banner_pc_01.jpg); }
+        }
+      }
+    }
   }
 }
 
@@ -49,6 +69,18 @@ header {
     }
 
     .menu_icon {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+
+      .lang-mobile {
+        a {
+          color: $bg;
+          font-weight: bold;
+          text-decoration: none;
+        }
+      }
+
       i {
         padding: 0.5rem;
         cursor: pointer;
@@ -65,6 +97,10 @@ header {
 
       .menu_icon {
         color: $font;
+        .lang-mobile a {
+          color: $font;
+          &:hover { color: $point; }
+        }
       }
     }
   }
@@ -72,6 +108,40 @@ header {
   // pc 버전 메뉴
   .t_menu_pc {
     display: none;
+
+    &.active {
+      display: block;
+      position: absolute;
+      top: 50px;
+      left: 0;
+      width: 100%;
+      background: $bg;
+      z-index: 1000;
+      box-shadow: $shadow;
+
+      .pc_menu {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 1rem;
+        padding: 1.5rem 0;
+
+        h1 { color: $font; font-size: 1.2rem; }
+
+        .pc_menu_list {
+          display: flex;
+          flex-direction: column;
+          align-items: center;
+          gap: 1rem;
+          font-weight: bold;
+          a { color: $font; }
+        }
+        .pc_menu_icon { display: none; }
+      }
+
+      .lang { display: none; }
+      hr { display: none; }
+    }
 
     @include mix.desk {
       display: block;
@@ -121,6 +191,7 @@ header {
         .pc_menu_icon {
           font-size: 1.4rem;
           @include mix.flex-layout();
+          i.fa-bars { display: none; }
         }
       }
 
@@ -382,10 +453,7 @@ a:hover p {
 .notice {
   // 전체영역 및 bg-img 설정
   height: 83vh;
-  background-image: url(../img/main/section2/section2-bg.jpg);
-  background-size: cover;
-  background-position: center;
-  background-repeat: no-repeat;
+  background-color: rgba(0, 141, 75, 0.15);
 
   // 반응형
   @include mix.desk {
@@ -429,14 +497,12 @@ a:hover p {
     margin: 0 auto 0.8rem;
     border-radius: $card_radius;
     box-shadow: $shadow;
-    background-image: url(../img/main/section2/mobile-first-card1.jpg);
-    background-size: cover;
-    background-position: center;
-    background-repeat: no-repeat;
+    background: linear-gradient(135deg, #e0f7fa 0%, #b2ebf2 100%);
     position: relative;
+    transition: transform 0.3s ease;
 
     &:hover {
-      background-size: 140%;
+      transform: scale(1.05);
     }
 
     // 첫번째 카드 반응형 처리
@@ -445,7 +511,6 @@ a:hover p {
       height: 100%;
       margin: 0;
       border-radius: 1rem;
-      background-image: url(../img/main/section2/pc-first-card1.jpg);
     }
   }
 
@@ -483,7 +548,7 @@ a:hover p {
   .seconde_cards {
     width: 100%;
     margin-top: 0.8rem;
-    @include mix.flex_layout($gap: 0.5rem, $align:stretch);
+    @include mix.flex_layout($dire: column, $gap: 0.5rem, $align:stretch);
 
     @include mix.desk {
       // width: 500px;
@@ -513,29 +578,25 @@ a:hover p {
         }
       }
 
-      div.two_card {
-        background-size: 120%;
-      }
+      transform: scale(1.05);
     }
 
     // 카드
     .two {
       height: 100%;
+      transition: transform 0.3s ease;
 
       &:nth-of-type(1) > .two_card {
-        background-image: url(../img/main/section2/mobile-two-card1.png);
+        background: linear-gradient(135deg, #fff9c4 0%, #fff59d 100%);
       }
 
       &:nth-of-type(2) > .two_card {
-        background-image: url(../img/main/section2/mobile-two-card2.png);
+        background: linear-gradient(135deg, #e8eaf6 0%, #c5cae9 100%);
       }
 
       .two_card {
         width: 100%;
         height: 16.5vh;
-        background-size: cover;
-        background-position: center;
-        background-repeat: no-repeat;
       }
 
       // 텍스트
@@ -569,17 +630,6 @@ a:hover p {
           flex: 3 1 0;
           min-height: 180px;
           width: 100%;
-          background-size: cover;
-          background-position: center;
-          background-repeat: no-repeat;
-        }
-
-        &:nth-of-type(1) > .two_card {
-          background-image: url(../img/main/section2/pc-two-card1.png);
-        }
-
-        &:nth-of-type(2) > .two_card {
-          background-image: url(../img/main/section2/pc-two-card2.png);
         }
 
         .two_txt {
@@ -614,7 +664,7 @@ a:hover p {
   /* 세번째 카드 묶음: .three_card (공지사항/방송가 뉴스) */
   .three_card {
     width: 100%;
-    @include mix.flex_layout($gap: 0.5rem);
+    @include mix.flex_layout($dire: column, $gap: 0.5rem);
 
     // 반응형
     @include mix.desk {
@@ -631,21 +681,19 @@ a:hover p {
       margin: 0.3rem 0;
       box-shadow: $shadow;
       border-radius: 0.5rem;
-      background-size: cover;
-      background-position: center;
-      background-repeat: no-repeat;
       cursor: pointer;
+      transition: transform 0.3s ease;
 
       &:hover {
-        background-size: 140%;
+        transform: scale(1.05);
       }
 
       &:first-child {
-        background-image: url(../img/main/section2/mobile-three-card1.png);
+        background: linear-gradient(135deg, #fce4ec 0%, #f8bbd0 100%);
       }
 
       &:last-child {
-        background-image: url(../img/main/section2/mobile-three-card2.png);
+        background: linear-gradient(135deg, #e8f5e9 0%, #c8e6c9 100%);
       }
 
       p {
@@ -774,19 +822,44 @@ section.introduce {
         background-image: url(../img/main/section4/section4-5.png);
       }
 
-      // hover
-      &:hover {
-        background-size: 120%;
+      // overlay
+      .overlay {
+        position: absolute;
+        inset: 0;
+        background: rgba(0, 0, 0, 0.5);
+        opacity: 0;
+        transition: opacity 0.3s ease;
+        border-radius: inherit;
       }
 
-      // 텍스트 아래정렬
-      p {
+      // hover text
+      .hover-text {
         position: absolute;
-        bottom: 10px;
-        left: 10px;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -30%);
         color: $bg;
-        font-size: 0.6rem;
+        font-size: 1rem;
         font-weight: bolder;
+        opacity: 0;
+        transition: all 0.3s ease;
+        z-index: 10;
+        width: 100%;
+        text-align: center;
+      }
+
+      // hover
+      &:hover {
+        .overlay { opacity: 1; }
+        .hover-text {
+          opacity: 1;
+          transform: translate(-50%, -50%);
+        }
+      }
+
+      // 텍스트 원래 있던거 숨김 (만약 .hover-text로 대체했다면 삭제 가능하지만 기존 p가 있을경우)
+      p:not(.hover-text) {
+        display: none;
       }
 
       @include mix.desk {
@@ -801,33 +874,17 @@ section.introduce {
         transition: transform .25s ease, box-shadow .25s ease, background-size .25s ease;
 
         &::after {
-        content: "";
-        position: absolute;
-        inset: 0;
-        /* 상단은 투명, 하단 어둡게 지정  */
-        background: linear-gradient(
-          to top,
-          rgba(0,0,0,0.8) 0%,
-          rgba(0,0,0,0.3) 35%,
-          rgba(0,0,0,0.00) 65%
-        );
-        pointer-events: none;
+          display: none; // 모바일 오버레이를 쓰기 위해 ::after는 제거
         }
 
         &:hover{
-          background-size: 130%;
-          transform: translateY(-2px);
+          transform: translateY(-5px);
         }
 
-        p {
-          position: absolute;
-          left: 20px;
-          bottom: 20px;
-          z-index: 20;
-          font-size: 1.3rem;
+        .hover-text {
+          font-size: 1.5rem;
           font-weight: 700;
           text-shadow: 0 1px 2px rgba(0,0,0,.25);
-          margin: 0;
         }
       }
     }
@@ -916,9 +973,9 @@ section.introduce {
             color: #777;
           }
 
-          // 현재 선택된 탭 스타일 (첫 번째 탭 가정)
-          &:nth-of-type(1) h3 {
-            background-color: $font;
+          // 현재 선택된 탭 스타일
+          &.active h3 {
+            background-color: $point;
             color: $bg;
           }
         }
@@ -931,23 +988,22 @@ section.introduce {
       width: 100%;
       height: 30%;
 
-      li {
-        position: absolute; // 겹치기
-        width: 100%;
-        top: 0;
-        left: 0;
-        background-color: $bg;
-
-        // 첫 번째 탭만 보이도록
-        &:not(:first-child) {
+        li {
+          position: absolute; // 겹치기
+          width: 100%;
+          top: 0;
+          left: 0;
+          background-color: $bg;
           opacity: 0;
           z-index: 1;
-        }
+          pointer-events: none;
+          transition: opacity 0.3s ease-in-out;
 
-        &:first-child {
-          opacity: 1;
-          z-index: 2;
-        }
+          &.active {
+            opacity: 1;
+            z-index: 2;
+            pointer-events: auto;
+          }
 
         // 배경 이미지 설정 (모바일과 동일)
         &:nth-of-type(1) > .left {
@@ -1014,9 +1070,16 @@ section.introduce {
           padding: 2rem 0;
           height: 100%;
 
-          // 데스크탑에서는 모든 탭 콘텐츠가 각각 보일 수 있도록 설정
-          opacity: 1;
-          z-index: auto;
+          // 데스크탑에서도 동일하게 opacity 기반 동작 유지
+          opacity: 0;
+          z-index: 1;
+          pointer-events: none;
+
+          &.active {
+            opacity: 1;
+            z-index: 2;
+            pointer-events: auto;
+          }
 
           .left {
             width: 65%;
@@ -1050,6 +1113,12 @@ section.introduce {
               padding: 1.2rem 2.5rem;
               border-radius: 5rem;
               margin: 4rem 0 0 3rem;
+              transition: background-color 0.3s ease;
+
+              &:hover {
+                background-color: rgba(0, 141, 75, 0.15);
+                color: $point;
+              }
             }
           }
         }
@@ -1074,41 +1143,42 @@ footer {
     width: 100%;
 
     .logo_track {
-      // 로고들을 한 줄에 나열
-      @include mix.flex_layout($just: flex-start, $gap: 1.5rem);
-      width: fit-content;
-      padding: 0 1rem;
+      display: flex;
+      width: max-content;
+      animation: infiniteSlide 20s linear infinite;
 
-      @include mix.desk {
-        padding: 0 2rem;
-      }
-
-      img {
-        // 로고 크기
-        height: 25px;
-        object-fit: contain;
+      i {
+        font-size: 25px;
+        color: #555;
         opacity: 0.8;
         flex-shrink: 0;
+        padding: 0 1rem;
 
         @include mix.desk {
-          height: 35px;
+          font-size: 35px;
+          padding: 0 2rem;
         }
       }
     }
   }
 
+@keyframes infiniteSlide {
+  0% { transform: translateX(0); }
+  100% { transform: translateX(-50%); }
+}
+
   // 푸터 내용 영역
   .footer_content {
     max-width: 1024px;
     margin: 0 auto;
-    padding: 2rem 1.5rem 2.5rem;
+    padding: 1.5rem 1.5rem 2rem;
 
     @include mix.desk {
       @include mix.flex_layout(
         $just: space-between,
         $align: center,
         $gap: 3rem);
-      padding: 3rem 1.5rem;
+      padding: 2rem 1.5rem;
     }
 
     .kba_info {

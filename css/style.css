@@ -1,20 +1,46 @@
 @charset "UTF-8";
 header {
   height: 78vh;
-  background-image: url(../img/header/banner01.jpg);
-  background-size: cover;
-  background-repeat: no-repeat;
-  background-position: center;
   position: relative;
   overflow: hidden;
 }
 @media all and (min-width: 1024px) {
   header {
     height: 45vh;
+  }
+}
+header .header-slider-wrap {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: -1;
+}
+header .header-slider-wrap .slider-track {
+  display: flex;
+  width: 300%;
+  height: 100%;
+  transition: transform 0.8s ease-in-out;
+}
+header .header-slider-wrap .slider-track .slide {
+  width: 33.333333%;
+  height: 100%;
+  background-size: cover;
+  background-position: center;
+}
+header .header-slider-wrap .slider-track .slide.slide-1 {
+  background-image: url(../img/header/banner01.jpg);
+}
+header .header-slider-wrap .slider-track .slide.slide-2 {
+  background-image: url(../img/header/banner02.jpg);
+}
+header .header-slider-wrap .slider-track .slide.slide-3 {
+  background-image: url(../img/header/banner03.jpg);
+}
+@media all and (min-width: 1024px) {
+  header .header-slider-wrap .slider-track .slide.slide-1 {
     background-image: url(../img/pc/header/banner_pc_01.jpg);
-    background-size: cover;
-    background-repeat: no-repeat;
-    background-position: center;
   }
 }
 
@@ -39,6 +65,16 @@ header .t_menu_mobile h1 {
   cursor: pointer;
   font-size: 0.8rem;
 }
+header .t_menu_mobile .menu_icon {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+header .t_menu_mobile .menu_icon .lang-mobile a {
+  color: #fff;
+  font-weight: bold;
+  text-decoration: none;
+}
 header .t_menu_mobile .menu_icon i {
   padding: 0.5rem;
   cursor: pointer;
@@ -52,7 +88,53 @@ header .t_menu_mobile:hover h1 {
 header .t_menu_mobile:hover .menu_icon {
   color: #222;
 }
+header .t_menu_mobile:hover .menu_icon .lang-mobile a {
+  color: #222;
+}
+header .t_menu_mobile:hover .menu_icon .lang-mobile a:hover {
+  color: rgb(0, 141, 75);
+}
 header .t_menu_pc {
+  display: none;
+}
+header .t_menu_pc.active {
+  display: block;
+  position: absolute;
+  top: 50px;
+  left: 0;
+  width: 100%;
+  background: #fff;
+  z-index: 1000;
+  box-shadow: 2px 2px 6px rgba(114, 114, 114, 0.3);
+}
+header .t_menu_pc.active .pc_menu {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1rem;
+  padding: 1.5rem 0;
+}
+header .t_menu_pc.active .pc_menu h1 {
+  color: #222;
+  font-size: 1.2rem;
+}
+header .t_menu_pc.active .pc_menu .pc_menu_list {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1rem;
+  font-weight: bold;
+}
+header .t_menu_pc.active .pc_menu .pc_menu_list a {
+  color: #222;
+}
+header .t_menu_pc.active .pc_menu .pc_menu_icon {
+  display: none;
+}
+header .t_menu_pc.active .lang {
+  display: none;
+}
+header .t_menu_pc.active hr {
   display: none;
 }
 @media all and (min-width: 1024px) {
@@ -108,6 +190,9 @@ header .t_menu_pc {
     justify-content: center;
     align-items: center;
     gap: 1rem;
+  }
+  header .t_menu_pc .pc_menu .pc_menu_icon i.fa-bars {
+    display: none;
   }
   header .t_menu_pc:hover {
     background-color: #fff;
@@ -325,12 +410,7 @@ a:hover p {
 }
 .notice {
   height: 83vh;
-  background-image: url(../img/main/section2/section2-bg.jpg);
-  background-size: cover;
-  background-position: center;
-  background-repeat: no-repeat;
-  /* 두번째 카드 영역: .seconde_cards (보도자료/성명서) */
-  /* 세번째 카드 묶음: .three_card (공지사항/방송가 뉴스) */
+  background-color: rgba(0, 141, 75, 0.15);
 }
 @media all and (min-width: 1024px) {
   .notice {
@@ -373,14 +453,12 @@ a:hover p {
   margin: 0 auto 0.8rem;
   border-radius: 4px;
   box-shadow: 2px 2px 6px rgba(114, 114, 114, 0.3);
-  background-image: url(../img/main/section2/mobile-first-card1.jpg);
-  background-size: cover;
-  background-position: center;
-  background-repeat: no-repeat;
+  background: linear-gradient(135deg, #e0f7fa 0%, #b2ebf2 100%);
   position: relative;
+  transition: transform 0.3s ease;
 }
 .notice .first_card:hover {
-  background-size: 140%;
+  transform: scale(1.05);
 }
 @media all and (min-width: 1024px) {
   .notice .first_card {
@@ -388,7 +466,6 @@ a:hover p {
     height: 100%;
     margin: 0;
     border-radius: 1rem;
-    background-image: url(../img/main/section2/pc-first-card1.jpg);
   }
 }
 .notice .first_icon {
@@ -420,11 +497,14 @@ a:hover p {
     flex: 1;
   }
 }
+.notice {
+  /* 두번째 카드 영역: .seconde_cards (보도자료/성명서) */
+}
 .notice .seconde_cards {
   width: 100%;
   margin-top: 0.8rem;
   display: flex;
-  flex-direction: row;
+  flex-direction: column;
   justify-content: center;
   align-items: stretch;
   gap: 0.5rem;
@@ -457,24 +537,22 @@ a:hover p {
 .notice .seconde_cards:hover div.two_txt > p:last-child {
   color: rgb(0, 141, 75);
 }
-.notice .seconde_cards:hover div.two_card {
-  background-size: 120%;
+.notice .seconde_cards:hover {
+  transform: scale(1.05);
 }
 .notice .seconde_cards .two {
   height: 100%;
+  transition: transform 0.3s ease;
 }
 .notice .seconde_cards .two:nth-of-type(1) > .two_card {
-  background-image: url(../img/main/section2/mobile-two-card1.png);
+  background: linear-gradient(135deg, #fff9c4 0%, #fff59d 100%);
 }
 .notice .seconde_cards .two:nth-of-type(2) > .two_card {
-  background-image: url(../img/main/section2/mobile-two-card2.png);
+  background: linear-gradient(135deg, #e8eaf6 0%, #c5cae9 100%);
 }
 .notice .seconde_cards .two .two_card {
   width: 100%;
   height: 16.5vh;
-  background-size: cover;
-  background-position: center;
-  background-repeat: no-repeat;
 }
 .notice .seconde_cards .two .two_txt {
   width: 100%;
@@ -501,15 +579,6 @@ a:hover p {
     flex: 3 1 0;
     min-height: 180px;
     width: 100%;
-    background-size: cover;
-    background-position: center;
-    background-repeat: no-repeat;
-  }
-  .notice .seconde_cards .two:nth-of-type(1) > .two_card {
-    background-image: url(../img/main/section2/pc-two-card1.png);
-  }
-  .notice .seconde_cards .two:nth-of-type(2) > .two_card {
-    background-image: url(../img/main/section2/pc-two-card2.png);
   }
   .notice .seconde_cards .two .two_txt {
     width: 100%;
@@ -534,10 +603,13 @@ a:hover p {
     color: #666;
   }
 }
+.notice {
+  /* 세번째 카드 묶음: .three_card (공지사항/방송가 뉴스) */
+}
 .notice .three_card {
   width: 100%;
   display: flex;
-  flex-direction: row;
+  flex-direction: column;
   justify-content: center;
   align-items: center;
   gap: 0.5rem;
@@ -561,19 +633,17 @@ a:hover p {
   margin: 0.3rem 0;
   box-shadow: 2px 2px 6px rgba(114, 114, 114, 0.3);
   border-radius: 0.5rem;
-  background-size: cover;
-  background-position: center;
-  background-repeat: no-repeat;
   cursor: pointer;
+  transition: transform 0.3s ease;
 }
 .notice .three_card .three:hover {
-  background-size: 140%;
+  transform: scale(1.05);
 }
 .notice .three_card .three:first-child {
-  background-image: url(../img/main/section2/mobile-three-card1.png);
+  background: linear-gradient(135deg, #fce4ec 0%, #f8bbd0 100%);
 }
 .notice .three_card .three:last-child {
-  background-image: url(../img/main/section2/mobile-three-card2.png);
+  background: linear-gradient(135deg, #e8f5e9 0%, #c8e6c9 100%);
 }
 .notice .three_card .three p {
   padding: 1rem 0.5rem;
@@ -704,16 +774,37 @@ section.introduce li.intro_card:nth-child(4) {
 section.introduce li.intro_card:nth-child(5) {
   background-image: url(../img/main/section4/section4-5.png);
 }
-section.introduce li.intro_card:hover {
-  background-size: 120%;
-}
-section.introduce li.intro_card p {
+section.introduce li.intro_card .overlay {
   position: absolute;
-  bottom: 10px;
-  left: 10px;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.5);
+  opacity: 0;
+  transition: opacity 0.3s ease;
+  border-radius: inherit;
+}
+section.introduce li.intro_card .hover-text {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -30%);
   color: #fff;
-  font-size: 0.6rem;
+  font-size: 1rem;
   font-weight: bolder;
+  opacity: 0;
+  transition: all 0.3s ease;
+  z-index: 10;
+  width: 100%;
+  text-align: center;
+}
+section.introduce li.intro_card:hover .overlay {
+  opacity: 1;
+}
+section.introduce li.intro_card:hover .hover-text {
+  opacity: 1;
+  transform: translate(-50%, -50%);
+}
+section.introduce li.intro_card p:not(.hover-text) {
+  display: none;
 }
 @media all and (min-width: 1024px) {
   section.introduce li.intro_card {
@@ -728,26 +819,15 @@ section.introduce li.intro_card p {
     transition: transform 0.25s ease, box-shadow 0.25s ease, background-size 0.25s ease;
   }
   section.introduce li.intro_card::after {
-    content: "";
-    position: absolute;
-    inset: 0;
-    /* 상단은 투명, 하단 어둡게 지정  */
-    background: linear-gradient(to top, rgba(0, 0, 0, 0.8) 0%, rgba(0, 0, 0, 0.3) 35%, rgba(0, 0, 0, 0) 65%);
-    pointer-events: none;
+    display: none;
   }
   section.introduce li.intro_card:hover {
-    background-size: 130%;
-    transform: translateY(-2px);
+    transform: translateY(-5px);
   }
-  section.introduce li.intro_card p {
-    position: absolute;
-    left: 20px;
-    bottom: 20px;
-    z-index: 20;
-    font-size: 1.3rem;
+  section.introduce li.intro_card .hover-text {
+    font-size: 1.5rem;
     font-weight: 700;
     text-shadow: 0 1px 2px rgba(0, 0, 0, 0.25);
-    margin: 0;
   }
 }
 
@@ -832,8 +912,8 @@ section.introduce li.intro_card p {
     border-bottom: none;
     color: #777;
   }
-  .business .content .tap_menu li:nth-of-type(1) h3 {
-    background-color: #222;
+  .business .content .tap_menu li.active h3 {
+    background-color: rgb(0, 141, 75);
     color: #fff;
   }
 }
@@ -848,14 +928,15 @@ section.introduce li.intro_card p {
   top: 0;
   left: 0;
   background-color: #fff;
-}
-.business .content .tap_content li:not(:first-child) {
   opacity: 0;
   z-index: 1;
+  pointer-events: none;
+  transition: opacity 0.3s ease-in-out;
 }
-.business .content .tap_content li:first-child {
+.business .content .tap_content li.active {
   opacity: 1;
   z-index: 2;
+  pointer-events: auto;
 }
 .business .content .tap_content li:nth-of-type(1) > .left {
   background-image: url(../img/main/section5/section5-1.png);
@@ -918,8 +999,14 @@ section.introduce li.intro_card p {
     gap: 2rem;
     padding: 2rem 0;
     height: 100%;
+    opacity: 0;
+    z-index: 1;
+    pointer-events: none;
+  }
+  .business .content .tap_content li.active {
     opacity: 1;
-    z-index: auto;
+    z-index: 2;
+    pointer-events: auto;
   }
   .business .content .tap_content li .left {
     width: 65%;
@@ -950,6 +1037,11 @@ section.introduce li.intro_card p {
     padding: 1.2rem 2.5rem;
     border-radius: 5rem;
     margin: 4rem 0 0 3rem;
+    transition: background-color 0.3s ease;
+  }
+  .business .content .tap_content li .right a:hover {
+    background-color: rgba(0, 141, 75, 0.15);
+    color: rgb(0, 141, 75);
   }
 }
 
@@ -966,33 +1058,34 @@ footer .logo_slide {
 }
 footer .logo_slide .logo_track {
   display: flex;
-  flex-direction: row;
-  justify-content: flex-start;
-  align-items: center;
-  gap: 1.5rem;
-  width: fit-content;
+  width: max-content;
+  animation: infiniteSlide 20s linear infinite;
+}
+footer .logo_slide .logo_track i {
+  font-size: 25px;
+  color: #555;
+  opacity: 0.8;
+  flex-shrink: 0;
   padding: 0 1rem;
 }
 @media all and (min-width: 1024px) {
-  footer .logo_slide .logo_track {
+  footer .logo_slide .logo_track i {
+    font-size: 35px;
     padding: 0 2rem;
   }
 }
-footer .logo_slide .logo_track img {
-  height: 25px;
-  object-fit: contain;
-  opacity: 0.8;
-  flex-shrink: 0;
-}
-@media all and (min-width: 1024px) {
-  footer .logo_slide .logo_track img {
-    height: 35px;
+@keyframes infiniteSlide {
+  0% {
+    transform: translateX(0);
+  }
+  100% {
+    transform: translateX(-50%);
   }
 }
 footer .footer_content {
   max-width: 1024px;
   margin: 0 auto;
-  padding: 2rem 1.5rem 2.5rem;
+  padding: 1.5rem 1.5rem 2rem;
 }
 @media all and (min-width: 1024px) {
   footer .footer_content {
@@ -1001,7 +1094,7 @@ footer .footer_content {
     justify-content: space-between;
     align-items: center;
     gap: 3rem;
-    padding: 3rem 1.5rem;
+    padding: 2rem 1.5rem;
   }
 }
 footer .footer_content .kba_info {
@@ -1064,4 +1157,6 @@ footer .footer_content .kba_info .copyright {
     align-self: flex-start;
     font-size: 0.9rem;
   }
-}/*# sourceMappingURL=style.css.map */
+}
+
+/*# sourceMappingURL=style.css.map */
